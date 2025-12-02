@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-base-100 text-base-content font-sans overflow-x-hidden`}

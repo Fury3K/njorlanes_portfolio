@@ -4,4 +4,3 @@
 
 [build.environment]
   SECRETS_SCAN_OMIT_KEYS = "SMTP_HOST"
-  SECRETS_SCAN_OMIT_KEYS = "SMTP_USER"

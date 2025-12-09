@@ -37,8 +37,8 @@ const About = () => {
                 <div className="relative group gs-reveal mx-auto md:mx-0 max-w-sm">
                     {/* Image Frame/Effect */}
                     <div className="absolute inset-0 border-2 border-[var(--color-primary)] rounded-lg transform translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
-                    <div className="relative rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-300 bg-[#121212]">
-                         <img src="/Profile.jpg" alt="Profile" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 mix-blend-multiply group-hover:mix-blend-normal transition-all duration-300" />
+                    <div className="relative rounded-lg overflow-hidden grayscale-0 lg:grayscale lg:hover:grayscale-0 transition-all duration-300 bg-[#121212]">
+                         <img src="/Profile.jpg" alt="Profile" className="w-full h-full object-cover opacity-100 lg:opacity-80 lg:group-hover:opacity-100 mix-blend-normal lg:mix-blend-multiply lg:group-hover:mix-blend-normal transition-all duration-300" />
                     </div>
                 </div>
             </div>

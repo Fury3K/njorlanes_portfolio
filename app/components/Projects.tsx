@@ -12,7 +12,7 @@ const Projects = () => {
                     <figure className="relative overflow-hidden h-48">
                         <img src="/AudioScholar.png" alt="AudioScholar" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                            <a href="https://it342-g3-audioscholar.onrender.com/" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">Demo</a>
+                            <a href="https://audioscholar.vercel.app/" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">Demo</a>
                             <a href="https://github.com/MasuRii/AudioScholar" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-white btn-sm text-white hover:text-black">Code</a>
                         </div>
                     </figure>

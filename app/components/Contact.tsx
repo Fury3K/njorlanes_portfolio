@@ -167,7 +167,7 @@ const Contact = () => {
                         {status === 'success' && (
                             <div className="alert alert-success text-sm text-white">
                                 <i className="fa-solid fa-circle-check"></i>
-                                <span>Message sent successfully! I'll get back to you soon.</span>
+                                <span>Message sent successfully! I&apos;ll get back to you soon.</span>
                             </div>
                         )}
 

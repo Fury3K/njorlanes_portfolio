@@ -2,27 +2,28 @@
 import React, { useEffect, useState } from 'react';
 
 const Navbar = () => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const localTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (localTheme) {
+        return localTheme;
+      } else if (prefersDark) {
+        return 'dark';
+      }
+    }
+    return 'light'; // Default theme if no preference or not on client
+  });
 
   useEffect(() => {
-    // Check for saved theme or preference
-    const localTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (localTheme) {
-      setTheme(localTheme);
-      document.querySelector('html')?.setAttribute('data-theme', localTheme);
-    } else if (prefersDark) {
-      setTheme('dark');
-      document.querySelector('html')?.setAttribute('data-theme', 'dark');
-    }
-  }, []);
+    // Set the data-theme attribute on the html element
+    document.querySelector('html')?.setAttribute('data-theme', theme);
+  }, [theme]); // Rerun when theme changes
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.querySelector('html')?.setAttribute('data-theme', newTheme);
   };
 
   return (

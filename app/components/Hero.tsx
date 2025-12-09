@@ -34,8 +34,8 @@ const Hero = () => {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--color-primary)] rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[var(--color-secondary)] rounded-full blur-[120px] opacity-10 pointer-events-none"></div>
 
-        <div className="container-custom z-10">
-            <div className="max-w-4xl">
+        <div className="container-custom z-10 text-center">
+            <div className="max-w-4xl mx-auto">
                 <p className="hero-text text-[var(--color-primary)] font-mono mb-4 text-lg">Hi, I&apos;m</p>
                 <h1 className="hero-text text-6xl md:text-8xl font-bold tracking-tight mb-2 text-white">
                     Nathan John<span className="text-[var(--color-primary)]">.</span>
@@ -43,17 +43,14 @@ const Hero = () => {
                 <h2 className="hero-text text-4xl md:text-6xl font-bold text-gray-400 mb-8">
                     I build <span className="text-white">digital experiences</span>.
                 </h2>
-                <p className="hero-text text-xl text-gray-400 max-w-xl mb-10 leading-relaxed">
+                <p className="hero-text text-xl text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed">
                     Full-Stack Developer focused on creating accessible, pixel-perfect, and performant web and mobile applications.
                 </p>
 
-                <div className="flex flex-wrap gap-4">
-                    <a href="#projects" className="hero-btn group relative px-8 py-4 bg-transparent border border-[var(--color-primary)] text-[var(--color-primary)] font-mono hover:bg-[var(--color-primary)] hover:text-black transition-all duration-300">
-                        Check out my work
-                        <span className="absolute inset-0 bg-[var(--color-primary)] opacity-0 group-hover:opacity-10 transition-opacity"></span>
-                    </a>
+                <div className="flex flex-wrap gap-4 justify-center items-center">
+
                     <a href="/ORLANES_Resume.pdf" download="Nathan_John_Orlanes_Resume.pdf" className="hero-btn px-8 py-4 text-gray-400 hover:text-white transition-colors font-mono flex items-center gap-2">
-                        <i className="fa-solid fa-download"></i> Resume
+                        <i className="fa-solid fa-download"></i> Download CV
                     </a>
                 </div>
             </div>

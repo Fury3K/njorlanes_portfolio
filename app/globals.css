@@ -2,22 +2,21 @@
 @plugin "daisyui";
 
 @theme {
-  --color-primary: #00ffc2;
-  --color-secondary: #00b894;
-  --color-accent: #6c5ce7;
-  --color-dark-bg: #0a0a0a;
-  --color-dark-surface: #121212;
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+  --color-primary: #ffffff;
+  --color-secondary: #ffffff;
+  --color-accent: #a3a3a3;
+  --color-dark-bg: #000000;
+  --color-dark-surface: #111111;
+  
+  --font-sans: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /* Custom Base Styles */
 body {
-    background-color: #0a0a0a;
+    background-color: var(--color-dark-bg);
     color: #e5e7eb;
+    font-family: var(--font-jetbrains-mono), monospace;
 }
 
 /* Typography Enhancements */
@@ -42,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .glass-card:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 0 20px rgba(0, 255, 194, 0.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     transform: translateY(-5px);
 }
 
@@ -60,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #00ffc2, #00b894);
+  background: linear-gradient(to right, #ffffff, #a3a3a3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

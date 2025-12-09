@@ -1,78 +1,84 @@
+"use client";
 import React from 'react';
 
 const Skills = () => {
-  const languages = [
-    { name: "Java", icon: "fa-brands fa-java", color: "text-orange-500" },
-    { name: "Python", icon: "fa-brands fa-python", color: "text-blue-400" },
-    { name: "JavaScript", icon: "fa-brands fa-js", color: "text-yellow-400" },
-    { name: "TypeScript", icon: "fa-solid fa-code", color: "text-blue-600" },
-    { name: "Kotlin", icon: "fa-brands fa-android", color: "text-purple-500" },
-    { name: "PHP", icon: "fa-brands fa-php", color: "text-indigo-400" },
-    { name: "SQL", icon: "fa-solid fa-database", color: "text-gray-500 dark:text-gray-400" },
-    { name: "HTML5", icon: "fa-brands fa-html5", color: "text-orange-600" },
-    { name: "CSS", icon: "fa-brands fa-css3-alt", color: "text-blue-500" },
-    { name: "C", icon: "fa-solid fa-c", color: "text-blue-700" },
-  ];
-
-  const technologies = [
-    { name: "Spring Boot", icon: "fa-solid fa-leaf", color: "text-green-500" },
-    { name: "Next.js", icon: "fa-solid fa-n", color: "text-base-content" },
-    { name: "React", icon: "fa-brands fa-react", color: "text-cyan-400" },
-    { name: "Tailwind CSS", icon: "fa-solid fa-wind", color: "text-cyan-500" },
-    { name: "DaisyUI", icon: "fa-solid fa-palette", color: "text-pink-400" },
-    { name: "Android", icon: "fa-brands fa-android", color: "text-green-400" },
-    { name: "Jetpack Compose", icon: "fa-solid fa-mobile-screen", color: "text-green-600" },
-    { name: "AWS", icon: "fa-brands fa-aws", color: "text-orange-500" },
-    { name: "Firebase", icon: "fa-solid fa-fire", color: "text-yellow-500" },
-    { name: "Git", icon: "fa-brands fa-git-alt", color: "text-red-500" },
-    { name: "GitHub", icon: "fa-brands fa-github", color: "text-base-content" },
-    { name: "Gemini API", icon: "fa-solid fa-brain", color: "text-blue-500" },
-    { name: "Maven/Gradle", icon: "fa-solid fa-scroll", color: "text-red-400" },
+  const skillCategories = [
+    {
+        title: "Frontend",
+        skills: [
+            { name: "React 19", icon: "fa-brands fa-react" },
+            { name: "Next.js 16", icon: "fa-solid fa-n" }, 
+            { name: "Tailwind CSS", icon: "fa-brands fa-css3-alt" },
+            { name: "DaisyUI", icon: "fa-solid fa-swatchbook" },
+            { name: "GSAP", icon: "fa-solid fa-wand-magic-sparkles" },
+            { name: "HTML5", icon: "fa-brands fa-html5" },
+            { name: "CSS3", icon: "fa-brands fa-css3-alt" },
+            { name: "JavaScript", icon: "fa-brands fa-js" },
+            { name: "TypeScript", icon: "fa-brands fa-js" }
+        ]
+    },
+    {
+        title: "Backend",
+        skills: [
+             { name: "Java", icon: "fa-brands fa-java" },
+             { name: "Python", icon: "fa-brands fa-python" },
+             { name: "Node.js", icon: "fa-brands fa-node" },
+             { name: "Express", icon: "fa-solid fa-server" },
+             { name: "Spring Boot", icon: "fa-solid fa-leaf" },
+             { name: "PHP", icon: "fa-brands fa-php" },
+             { name: "C", icon: "fa-solid fa-c" },
+             { name: "SQL", icon: "fa-solid fa-database" },
+             { name: "PostgreSQL", icon: "fa-solid fa-database" },
+             { name: "MongoDB", icon: "fa-solid fa-leaf" },
+             { name: "Firebase", icon: "fa-solid fa-fire" }
+        ]
+    },
+    {
+        title: "Tools & Platforms",
+        skills: [
+            { name: "Git", icon: "fa-brands fa-git-alt" },
+            { name: "GitHub", icon: "fa-brands fa-github" },
+            { name: "AWS", icon: "fa-brands fa-aws" },
+            { name: "Vercel", icon: "fa-solid fa-cloud-arrow-up" },
+            { name: "Netlify", icon: "fa-solid fa-diamond" },
+            { name: "Maven/Gradle", icon: "fa-solid fa-scroll" },
+            { name: "Postman", icon: "fa-solid fa-paper-plane" },
+            { name: "IntelliJ/VS Code", icon: "fa-solid fa-code" }
+        ]
+    },
+    {
+        title: "Mobile",
+        skills: [
+            { name: "Kotlin", icon: "fa-brands fa-android" },
+            { name: "Jetpack Compose", icon: "fa-solid fa-mobile-screen" },
+            { name: "Android", icon: "fa-brands fa-android" }
+        ]
+    }
   ];
 
   return (
-    <section id="skills" className="py-20 bg-base-100">
-        <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-center mb-16 gs-reveal text-base-content"><span className="border-b-4 border-primary pb-2">My Skills</span></h2>
+    <section id="skills" className="py-32">
+        <div className="container-custom">
+            <h2 className="text-3xl font-bold mb-16 flex items-center gap-4 gs-reveal">
+                <span className="text-white font-mono text-xl">02.</span>
+                <span className="text-gray-200">Tech Stack</span>
+                <span className="h-px bg-gray-800 flex-grow max-w-xs ml-4"></span>
+            </h2>
 
-            <div className="space-y-12">
-                
-                {/* Programming Languages */}
-                <div className="mb-16">
-                    <h3 className="text-2xl font-bold text-center mb-10 flex items-center justify-center gap-3 text-base-content gs-reveal">
-                        <i className="fa-solid fa-code text-primary"></i>
-                        Programming Languages
-                    </h3>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        {languages.map((skill, index) => (
-                            <div key={index} className="gs-bubble group flex items-center justify-center gap-2 bg-base-200 hover:bg-base-100 border border-base-300 hover:border-primary/50 shadow-lg hover:shadow-xl hover:shadow-primary/20 rounded-full p-3 h-16 min-w-[4rem] hover:min-w-max hover:px-6 transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] cursor-default overflow-hidden">
-                                <i className={`${skill.icon} text-3xl ${skill.color} shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}></i>
-                                <span className="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 whitespace-nowrap transition-all duration-500 ease-out font-bold text-base-content text-sm">
-                                    {skill.name}
-                                </span>
-                            </div>
-                        ))}
+            <div className="grid md:grid-cols-2 gap-12">
+                {skillCategories.map((category, index) => (
+                    <div key={index} className="gs-reveal">
+                        <h3 className="text-xl font-bold text-white mb-6 pl-2">{category.title}</h3>
+                        <div className="flex flex-wrap gap-3">
+                            {category.skills.map((skill, idx) => (
+                                <div key={idx} className="flex items-center gap-2 border border-gray-700 rounded-full px-4 py-2 text-gray-400 hover:border-white hover:text-white hover:bg-white/5 transition-all cursor-default group">
+                                    <i className={`${skill.icon} text-lg transition-colors`}></i>
+                                    <span className="text-sm font-mono">{skill.name}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-
-                {/* Technologies & Frameworks */}
-                <div>
-                    <h3 className="text-2xl font-bold text-center mb-10 flex items-center justify-center gap-3 text-base-content gs-reveal">
-                        <i className="fa-solid fa-layer-group text-secondary"></i>
-                        Technologies & Frameworks
-                    </h3>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        {technologies.map((skill, index) => (
-                            <div key={index} className="gs-bubble group flex items-center justify-center gap-2 bg-base-200 hover:bg-base-100 border border-base-300 hover:border-secondary/50 shadow-lg hover:shadow-xl hover:shadow-secondary/20 rounded-full p-3 h-16 min-w-[4rem] hover:min-w-max hover:px-6 transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] cursor-default overflow-hidden">
-                                <i className={`${skill.icon} text-3xl ${skill.color} shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}></i>
-                                <span className="max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 whitespace-nowrap transition-all duration-500 ease-out font-bold text-base-content text-sm">
-                                    {skill.name}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
+                ))}
             </div>
         </div>
     </section>

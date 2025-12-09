@@ -1,67 +1,57 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const Hero = () => {
-  const [text, setText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const heroRef = useRef(null);
 
-      const words = ["Full-Stack Developer", "Mobile Developer", "Cloud Enthusiast"];
-  
-    useEffect(() => {
-      const handleType = () => {
-        const i = loopNum % words.length;
-        const fullText = words[i];
-  
-        setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
-  
-        if (isDeleting) {
-          setTypingSpeed(50); // Faster deleting
-        } else {
-          setTypingSpeed(100); // Normal typing
-        }
-  
-        if (!isDeleting && text === fullText) {
-          setTypingSpeed(2000); // Pause at end
-          setIsDeleting(true);
-        } else if (isDeleting && text === '') {
-          setIsDeleting(false);
-          setLoopNum(loopNum + 1);
-          setTypingSpeed(500); // Pause before next word
-        }
-      };
-  
-      const timer = setTimeout(handleType, typingSpeed);
-      return () => clearTimeout(timer);
-    }, [text, isDeleting, loopNum, typingSpeed, words]);
-  
-    return (
-      <section id="home" className="min-h-screen flex items-center justify-center pt-16 px-6">
-          <div className="container mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
-              <div className="flex-1 space-y-6 text-center md:text-left gs-reveal">
-                  <h2 className="text-4xl md:text-6xl font-bold text-base-content">
-                      Hi, I&apos;m <br />                    <span className="text-gradient">Nathan John G. Orlanes</span>
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+        gsap.from(".hero-text", {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+        
+        gsap.from(".hero-btn", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            delay: 0.8,
+            stagger: 0.1,
+            ease: "power3.out"
+        });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="home" ref={heroRef} className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--color-primary)] rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[var(--color-secondary)] rounded-full blur-[120px] opacity-10 pointer-events-none"></div>
+
+        <div className="container-custom z-10 text-center">
+            <div className="max-w-4xl mx-auto">
+                <p className="hero-text text-[var(--color-primary)] font-mono mb-4 text-lg">Hi, I&apos;m</p>
+                <h1 className="hero-text text-6xl md:text-8xl font-bold tracking-tight mb-2 text-white">
+                    Nathan John<span className="text-[var(--color-primary)]">.</span>
+                </h1>
+                <h2 className="hero-text text-4xl md:text-6xl font-bold text-gray-400 mb-8">
+                    I build <span className="text-white">digital experiences</span>.
                 </h2>
-                <h3 className="text-2xl md:text-3xl font-semibold text-base-content/80">
-                    <span>{text}</span><span className="cursor">&nbsp;</span>
-                </h3>
-                <p className="py-4 text-lg text-base-content/70 max-w-lg mx-auto md:mx-0">
-                    Highly motivated Full-Stack Developer proficient in building scalable applications across web and mobile platforms. Specialized in robust backend services using Java (Spring Boot) and modern frontends with Next.js and React 19.
+                <p className="hero-text text-xl text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed">
+                    Full-Stack Developer focused on creating accessible, pixel-perfect, and performant web and mobile applications.
                 </p>
-                <div className="flex gap-4 justify-center md:justify-start flex-wrap">
-                    <a href="#projects" className="btn btn-primary text-white shadow-lg shadow-indigo-500/30">View Projects</a>
-                    <a href="#contact" className="btn btn-outline btn-primary">Contact Me</a>
-                    <a href="/ORLANES_Resume.pdf" download="Nathan_John_Orlanes_Resume.pdf" className="btn btn-secondary text-white shadow-lg">
-                        Download CV <i className="fa-solid fa-download"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div className="flex-1 flex justify-center gs-bubble">
-                <div className="relative w-72 h-72 md:w-96 md:h-96">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
-                    <img src="/Profile.jpg" alt="Profile" className="rounded-full w-full h-full object-cover border-4 border-base-100 shadow-2xl relative z-10 hover:scale-105 transition-transform duration-500" />
+                <div className="flex flex-wrap gap-4 justify-center items-center">
+
+                    <a href="/ORLANES_Resume.pdf" download="Nathan_John_Orlanes_Resume.pdf" className="hero-btn px-8 py-4 text-gray-400 hover:text-white transition-colors font-mono flex items-center gap-2">
+                        <i className="fa-solid fa-download"></i> Download CV
+                    </a>
                 </div>
             </div>
         </div>

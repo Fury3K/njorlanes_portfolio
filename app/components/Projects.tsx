@@ -118,7 +118,7 @@ const Projects = () => {
                 <div className="group glass-card rounded-lg overflow-hidden gs-reveal relative hover:-translate-y-2 transition-transform duration-300 lg:col-span-2">
                     <div className="h-48 overflow-hidden relative">
                         <div className="absolute inset-0 bg-[#0a0a0a]/30 group-hover:bg-transparent transition-all duration-500 z-10"></div>
-                        <img src="/Wishpay.png" alt="Wishpay" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                        <img src="/Wishpay.png" alt="Wishpay" className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" />
                     </div>
                     
                     <div className="p-6 bg-[#121212] h-full flex flex-col justify-between">

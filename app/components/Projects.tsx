@@ -17,7 +17,7 @@ const Projects = () => {
                     <div className="h-48 overflow-hidden relative">
                          {/* Overlay */}
                         <div className="absolute inset-0 bg-[#0a0a0a]/30 group-hover:bg-transparent transition-all duration-500 z-10"></div>
-                        <img src="/AudioScholar.png" alt="AudioScholar" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                        <img src="/AudioScholar.png" alt="AudioScholar" className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" />
                     </div>
                     
                     <div className="p-6 bg-[#121212] h-full flex flex-col justify-between">

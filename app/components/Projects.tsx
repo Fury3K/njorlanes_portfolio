@@ -13,7 +13,7 @@ const Projects = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Project 1: AudioScholar */}
-                <div className="group glass-card rounded-lg overflow-hidden gs-reveal relative hover:-translate-y-2 transition-transform duration-300">
+                <div className="group glass-card rounded-lg overflow-hidden gs-reveal relative hover:-translate-y-2 transition-transform duration-300 lg:col-span-2">
                     <div className="h-48 overflow-hidden relative">
                          {/* Overlay */}
                         <div className="absolute inset-0 bg-[#0a0a0a]/30 group-hover:bg-transparent transition-all duration-500 z-10"></div>
@@ -101,7 +101,7 @@ const Projects = () => {
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-primary)] transition-colors">CainAndAbel</h3>
+                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-primary)] transition-colors">Cain & Abel</h3>
                             <p className="text-gray-400 text-sm mb-4 line-clamp-3">
                                 Entry for the competition in Proweaver Hackathon PromptQuest.
                             </p>
@@ -115,7 +115,7 @@ const Projects = () => {
                 </div>
 
                 {/* Project 4: Wishpay */}
-                <div className="group glass-card rounded-lg overflow-hidden gs-reveal relative hover:-translate-y-2 transition-transform duration-300">
+                <div className="group glass-card rounded-lg overflow-hidden gs-reveal relative hover:-translate-y-2 transition-transform duration-300 lg:col-span-2">
                     <div className="h-48 overflow-hidden relative">
                         <div className="absolute inset-0 bg-[#0a0a0a]/30 group-hover:bg-transparent transition-all duration-500 z-10"></div>
                         <img src="/Wishpay.png" alt="Wishpay" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
@@ -135,7 +135,7 @@ const Projects = () => {
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-primary)] transition-colors">Wishpay</h3>
+                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-primary)] transition-colors">WishPay</h3>
                             <p className="text-gray-400 text-sm mb-4 line-clamp-3">
                                 A comprehensive platform for managing and fulfilling wishlist payments.
                             </p>

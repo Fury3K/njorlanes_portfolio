@@ -82,6 +82,71 @@ const Projects = () => {
                         </ul>
                     </div>
                 </div>
+
+                {/* Project 3: CainAndAbel */}
+                <div className="group glass-card rounded-lg overflow-hidden gs-reveal relative hover:-translate-y-2 transition-transform duration-300">
+                    <div className="h-48 overflow-hidden relative">
+                        <div className="absolute inset-0 bg-[#0a0a0a]/30 group-hover:bg-transparent transition-all duration-500 z-10"></div>
+                        <img src="/CainAndAbel.png" alt="CainAndAbel" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                    </div>
+                    
+                    <div className="p-6 bg-[#121212] h-full flex flex-col justify-between">
+                        <div>
+                            <div className="flex justify-between items-start mb-4">
+                                <i className="fa-regular fa-folder text-[var(--color-primary)] text-4xl"></i>
+                                <div className="flex gap-4">
+                                    <a href="https://github.com/Fury3K/Cain-and-Abel" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors">
+                                        <i className="fa-brands fa-github text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-primary)] transition-colors">CainAndAbel</h3>
+                            <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                                Entry for the competition in Proweaver Hackathon PromptQuest.
+                            </p>
+                        </div>
+
+                        <ul className="flex flex-wrap gap-3 text-xs font-mono text-gray-500 mt-4">
+                            <li>Hackathon</li>
+                            <li>PromptQuest</li>
+                        </ul>
+                    </div>
+                </div>
+
+                {/* Project 4: Wishpay */}
+                <div className="group glass-card rounded-lg overflow-hidden gs-reveal relative hover:-translate-y-2 transition-transform duration-300">
+                    <div className="h-48 overflow-hidden relative">
+                        <div className="absolute inset-0 bg-[#0a0a0a]/30 group-hover:bg-transparent transition-all duration-500 z-10"></div>
+                        <img src="/Wishpay.png" alt="Wishpay" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                    </div>
+                    
+                    <div className="p-6 bg-[#121212] h-full flex flex-col justify-between">
+                        <div>
+                            <div className="flex justify-between items-start mb-4">
+                                <i className="fa-regular fa-folder text-[var(--color-primary)] text-4xl"></i>
+                                <div className="flex gap-4">
+                                    <a href="https://github.com/Fury3K/wishpayments" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors">
+                                        <i className="fa-brands fa-github text-xl"></i>
+                                    </a>
+                                    <a href="https://wishpay.marneilx.org/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--color-primary)] transition-colors">
+                                        <i className="fa-solid fa-arrow-up-right-from-square text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[var(--color-primary)] transition-colors">Wishpay</h3>
+                            <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                                A comprehensive platform for managing and fulfilling wishlist payments.
+                            </p>
+                        </div>
+
+                        <ul className="flex flex-wrap gap-3 text-xs font-mono text-gray-500 mt-4">
+                            <li>Web App</li>
+                            <li>Full-Stack</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

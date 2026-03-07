@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -7,9 +7,15 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
 export const metadata: Metadata = {
   title: "NJ's Portfolio",
-  description: "Personal Portfolio Website",
+  description: "Nathan John Orlanes — Full-Stack Developer Portfolio",
 };
 
 export default function RootLayout({
@@ -23,7 +29,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
       </head>
       <body
-        className={`${jetbrainsMono.variable} antialiased bg-[#0a0a0a] text-gray-200 font-mono overflow-x-hidden selection:bg-teal-500/30 selection:text-teal-200`}
+        className={`${jetbrainsMono.variable} ${outfit.variable} antialiased bg-[#050510] text-gray-200 font-mono overflow-x-hidden`}
       >
         {children}
       </body>

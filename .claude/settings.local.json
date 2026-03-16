@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(gh repo:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(npx eslint:*)"
     ]
   }
 }

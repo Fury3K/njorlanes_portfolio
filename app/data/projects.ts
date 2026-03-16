@@ -68,11 +68,11 @@ export const projects: Project[] = [
   },
   {
     number: "07",
-    title: "JeepMe",
+    title: "Pasahe",
     description:
-      "An interactive jeepney route finder for Metro Cebu, Philippines. Drop pins on a map to instantly find matching routes, estimate fares based on LTFRB guidelines, and see paths snapped to real streets via OSRM. Covers 55+ Metro Cebu jeepney lines.",
-    image: "/JeepMe.png",
-    badges: ["Next.js", "Leaflet", "GSAP", "Tailwind", "TypeScript"],
-    githubUrl: "https://github.com/RecursiveDev/JeepMe",
+      "A cross-platform Flutter app that estimates public transportation fares across the Philippines. Supports 11+ transport modes including jeepney, bus, train, ferry, and more — with distance-based calculations via OSRM, offline map support, and passenger discounts for students, seniors, and PWDs.",
+    image: "/Pasahe.png",
+    badges: ["Flutter", "Dart", "OpenStreetMap", "OSRM", "Hive"],
+    githubUrl: "https://github.com/RecursiveDev/Pasahe",
   },
 ];

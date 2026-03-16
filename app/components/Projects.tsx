@@ -8,28 +8,6 @@ const Projects: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Desktop sticky scroll
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.innerWidth < 1024) return; // lg breakpoint
-
-    const ctx = gsap.context(() => {
-      const panels = document.querySelectorAll(".project-panel");
-
-      panels.forEach((panel, i) => {
-        ScrollTrigger.create({
-          trigger: panel,
-          start: "top center",
-          end: "bottom center",
-          onEnter: () => swapContent(i),
-          onEnterBack: () => swapContent(i),
-        });
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   const swapContent = (index: number) => {
     setActiveIndex(index);
 
@@ -110,6 +88,28 @@ const Projects: React.FC = () => {
     });
   };
 
+  // Desktop sticky scroll
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.innerWidth < 1024) return; // lg breakpoint
+
+    const ctx = gsap.context(() => {
+      const panels = document.querySelectorAll(".project-panel");
+
+      panels.forEach((panel, i) => {
+        ScrollTrigger.create({
+          trigger: panel,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => swapContent(i),
+          onEnterBack: () => swapContent(i),
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section id="projects" ref={sectionRef} className="relative">
       {/* Section header */}
@@ -117,7 +117,7 @@ const Projects: React.FC = () => {
         <div className="relative gs-reveal opacity-0">
           <span className="section-number">03</span>
           <div className="relative z-10">
-            <div className="section-label mb-3">// Selected Work</div>
+            <div className="section-label mb-3">{"// Selected Work"}</div>
             <h2 className="gs-scramble font-display font-extrabold text-3xl md:text-4xl tracking-tight">
               Projects
             </h2>
@@ -199,7 +199,7 @@ const Projects: React.FC = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover object-top"
+                  className={`w-full h-full object-cover object-top ${project.title === "Game of the Generals" ? "scale-110" : ""}`}
                 />
                 {/* Shimmer overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/40 via-transparent to-transparent opacity-60" />
@@ -218,7 +218,7 @@ const Projects: React.FC = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover object-top"
+                  className={`w-full h-full object-cover object-top ${project.title === "Game of the Generals" ? "scale-110" : ""}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/60 via-transparent to-transparent" />
               </div>

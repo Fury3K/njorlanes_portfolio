@@ -26,7 +26,8 @@ function SkillGroup({ number, label, skills }: { number: string; label: string; 
 const skillCategories = [
   { number: "01", label: "Frontend", skills: [
     { name: "React 19", icon: "fa-brands fa-react" }, { name: "Next.js 16", icon: "fa-solid fa-n" },
-    { name: "Tailwind CSS", icon: "fa-brands fa-css3-alt" }, { name: "GSAP", icon: "fa-solid fa-wand-magic-sparkles" },
+    { name: "Tailwind CSS", icon: "fa-brands fa-css3-alt" }, { name: "DaisyUI", icon: "fa-solid fa-palette" },
+    { name: "GSAP", icon: "fa-solid fa-wand-magic-sparkles" }, { name: "Three.js", icon: "fa-solid fa-cube" },
     { name: "HTML5", icon: "fa-brands fa-html5" }, { name: "CSS3", icon: "fa-brands fa-css3-alt" },
     { name: "JavaScript", icon: "fa-brands fa-js" }, { name: "TypeScript", icon: "fa-brands fa-js" },
   ]},
@@ -42,11 +43,14 @@ const skillCategories = [
     { name: "Git", icon: "fa-brands fa-git-alt" }, { name: "GitHub", icon: "fa-brands fa-github" },
     { name: "AWS", icon: "fa-brands fa-aws" }, { name: "Vercel", icon: "fa-solid fa-cloud-arrow-up" },
     { name: "Netlify", icon: "fa-solid fa-diamond" }, { name: "Maven/Gradle", icon: "fa-solid fa-scroll" },
-    { name: "Postman", icon: "fa-solid fa-paper-plane" }, { name: "IntelliJ/VS Code", icon: "fa-solid fa-code" },
+    { name: "Docker", icon: "fa-brands fa-docker" }, { name: "Leaflet", icon: "fa-solid fa-map-location-dot" },
+    { name: "ESLint", icon: "fa-solid fa-check-double" }, { name: "Postman", icon: "fa-solid fa-paper-plane" },
+    { name: "IntelliJ/VS Code", icon: "fa-solid fa-code" },
   ]},
   { number: "04", label: "Mobile", skills: [
     { name: "Kotlin", icon: "fa-brands fa-android" }, { name: "Jetpack Compose", icon: "fa-solid fa-mobile-screen" },
-    { name: "Android", icon: "fa-brands fa-android" },
+    { name: "Android", icon: "fa-brands fa-android" }, { name: "Flutter", icon: "fa-solid fa-wind" },
+    { name: "Dart", icon: "fa-solid fa-code" }, { name: "Swift", icon: "fa-brands fa-swift" },
   ]},
 ];
 

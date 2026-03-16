@@ -1,50 +1,82 @@
-@import "tailwindcss";
-@plugin "daisyui";
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600,700&display=swap');
 
+@import "tailwindcss";
+
+/* ============================
+   DESIGN SYSTEM — MONOCHROME
+   ============================ */
 @theme {
-  --color-primary: #00f0ff;
-  --color-secondary: #8b5cf6;
-  --color-accent: #f472b6;
-  --color-dark-bg: #050510;
-  --color-dark-surface: #0c0c1d;
-  --color-dark-card: #111128;
-  
-  --font-sans: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-display: var(--font-outfit), 'Inter', system-ui, sans-serif;
+  --font-sans: 'General Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Clash Display', system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-background: #06060A;
+  --color-surface: #0E0E12;
+  --color-surface-elevated: #161619;
+  --color-border: #1C1C22;
+  --color-border-hover: #2A2A32;
+
+  /* Monochrome accent — white */
+  --color-accent: #FFFFFF;
+  --color-accent-hover: #E0E0E0;
+  --color-accent-muted: rgba(255, 255, 255, 0.06);
+  --color-accent-glow: rgba(255, 255, 255, 0.08);
+
+  --color-text-primary: #F0F0F2;
+  --color-text-secondary: #888890;
+  --color-text-muted: #444450;
+  --color-body: #99999F;
 }
 
 /* ============================
    BASE STYLES
    ============================ */
 body {
-  background-color: var(--color-dark-bg);
-  color: #e2e8f0;
-  font-family: var(--font-mono);
+  background-color: var(--color-background);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Noise grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  background: rgba(0, 240, 255, 0.2);
-  color: #00f0ff;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: var(--font-display);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
 }
 
 /* ============================
-   SCROLLBAR
+   CUSTOM SCROLLBAR
    ============================ */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-dark-bg);
+  background: var(--color-background);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* ============================
@@ -54,116 +86,348 @@ h1, h2, h3 {
   position: fixed;
   top: 0;
   left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
-  z-index: 9999;
+  height: 2px;
+  background: #fff;
+  z-index: 9998;
   transform-origin: left;
   will-change: transform;
 }
 
 /* ============================
-   GLASSMORPHISM
+   GLASSMORPHISM CARDS
    ============================ */
-.glass-nav {
-  background: rgba(5, 5, 16, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.08);
-}
-
 .glass-card {
-  background: rgba(12, 12, 29, 0.6);
+  background: rgba(14, 14, 18, 0.8);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 240, 255, 0.08);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 240, 255, 0.25);
-  box-shadow: 
-    0 0 30px rgba(0, 240, 255, 0.08),
-    0 0 60px rgba(139, 92, 246, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transform: translateY(-6px);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.02);
 }
 
 /* ============================
-   TEXT EFFECTS
+   SECTION ELEMENTS
    ============================ */
-.text-gradient {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-accent) 100%);
-  -webkit-background-clip: text;
+.section-number {
+  position: absolute;
+  top: -2rem;
+  left: -1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(6rem, 15vw, 12rem);
+  line-height: 1;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
   -webkit-text-fill-color: transparent;
-  background-clip: text;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.text-gradient-subtle {
-  background: linear-gradient(135deg, #ffffff 0%, var(--color-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  font-weight: 600;
 }
 
-.glow-text {
-  text-shadow: 
-    0 0 10px rgba(0, 240, 255, 0.5),
-    0 0 40px rgba(0, 240, 255, 0.2);
+.accent-line {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.2), transparent);
+  border-radius: 1px;
 }
 
 /* ============================
-   GLOW & BORDER EFFECTS
+   TECH BADGES
    ============================ */
-.gradient-border {
-  position: relative;
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
 }
-.gradient-border::before {
+
+.tech-badge:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.04);
+}
+
+.tech-badge i {
+  font-size: 14px;
+  transition: color 0.25s;
+}
+
+.tech-badge:hover i {
+  color: #fff;
+}
+
+/* ============================
+   PROJECT IMAGES
+   ============================ */
+.project-scroll-image {
+  filter: grayscale(60%) brightness(0.8);
+  transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.project-scroll-image.is-active,
+.project-scroll-image:hover {
+  filter: grayscale(0%) brightness(1);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.1),
+    0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================
+   PROJECT TAG
+   ============================ */
+.project-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ============================
+   PROGRESS DOTS (Projects)
+   ============================ */
+.progress-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-dot.is-active {
+  height: 24px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+/* ============================
+   FORM INPUTS
+   ============================ */
+.form-input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-input:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04);
+}
+
+/* ============================
+   SOCIAL BUTTONS
+   ============================ */
+.social-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  background: transparent;
+}
+
+.social-btn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.06);
+}
+
+/* ============================
+   CUSTOM CURSOR
+   ============================ */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+}
+
+/* ============================
+   BOOT SCREEN CURSOR
+   ============================ */
+.cursor-block {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: #fff;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+/* ============================
+   GRID BACKGROUND
+   ============================ */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ============================
+   GLOW ORBS
+   ============================ */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ============================
+   MESH GRADIENT BACKGROUND
+   ============================ */
+.mesh-gradient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mesh-gradient::before {
   content: '';
   position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary), var(--color-accent));
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.gradient-border:hover::before {
-  opacity: 1;
+  width: 600px;
+  height: 600px;
+  top: -10%;
+  right: -5%;
+  background: radial-gradient(circle, rgba(255,255,255,0.03), transparent 70%);
+  border-radius: 50%;
 }
 
-.glow-border {
-  border: 1px solid rgba(0, 240, 255, 0.15);
-  transition: all 0.4s ease;
-}
-.glow-border:hover {
-  border-color: rgba(0, 240, 255, 0.4);
-  box-shadow: 
-    0 0 15px rgba(0, 240, 255, 0.1),
-    inset 0 0 15px rgba(0, 240, 255, 0.02);
+.mesh-gradient::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  bottom: -5%;
+  left: -5%;
+  background: radial-gradient(circle, rgba(255,255,255,0.02), transparent 70%);
+  border-radius: 50%;
 }
 
 /* ============================
-   SHIMMER EFFECT
+   UTILITY
    ============================ */
-.shimmer {
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh;
+}
+
+/* ============================
+   KEYFRAMES
+   ============================ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* ============================
+   SHIMMER HOVER
+   ============================ */
+.shimmer-gold {
   position: relative;
   overflow: hidden;
 }
-.shimmer::after {
+.shimmer-gold::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     105deg,
     transparent 40%,
-    rgba(0, 240, 255, 0.06) 45%,
-    rgba(0, 240, 255, 0.12) 50%,
-    rgba(0, 240, 255, 0.06) 55%,
+    rgba(255, 255, 255, 0.06) 45%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.06) 55%,
     transparent 60%
   );
   transform: translateX(-100%);
   transition: none;
 }
-.shimmer:hover::after {
+.shimmer-gold:hover::after {
   animation: shimmerSweep 0.8s ease-out forwards;
 }
 
@@ -172,186 +436,17 @@ h1, h2, h3 {
 }
 
 /* ============================
-   MAGNETIC BUTTON
+   SCANLINE (Boot Screen)
    ============================ */
-.magnetic-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: transparent;
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-}
-.magnetic-btn::before {
-  content: '';
+.scanline-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-}
-.magnetic-btn:hover {
-  color: #050510;
-  border-color: transparent;
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-  transform: translateY(-2px);
-}
-.magnetic-btn:hover::before {
-  opacity: 1;
-}
-
-/* ============================
-   ANIMATED DOT GRID (Hero BG)
-   ============================ */
-.dot-grid {
-  background-image: radial-gradient(rgba(0, 240, 255, 0.12) 1px, transparent 1px);
-  background-size: 30px 30px;
-}
-
-/* ============================
-   FLOATING ORBS
-   ============================ */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
   pointer-events: none;
-  will-change: transform;
-}
-
-.orb-cyan {
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.2), transparent 70%);
-}
-
-.orb-violet {
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%);
-}
-
-.orb-pink {
-  background: radial-gradient(circle, rgba(244, 114, 182, 0.15), transparent 70%);
-}
-
-/* ============================
-   CURSOR BLINK
-   ============================ */
-.cursor {
-  display: inline-block;
-  width: 3px;
-  background-color: var(--color-primary);
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* ============================
-   FLOAT ANIMATION
-   ============================ */
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  33% { transform: translateY(-20px) rotate(2deg); }
-  66% { transform: translateY(10px) rotate(-1deg); }
-}
-
-@keyframes floatSlow {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(30px, -40px) scale(1.05); }
-  50% { transform: translate(-20px, -60px) scale(0.95); }
-  75% { transform: translate(40px, -20px) scale(1.02); }
-}
-
-/* ============================
-   GLOW PULSE
-   ============================ */
-@keyframes glowPulse {
-  0%, 100% { 
-    box-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
-  }
-  50% { 
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), 0 0 40px rgba(0, 240, 255, 0.1);
-  }
-}
-
-/* ============================
-   UNDERLINE DRAW
-   ============================ */
-.underline-draw {
-  position: relative;
-  display: inline-block;
-}
-.underline-draw::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.underline-draw:hover::after {
-  width: 100%;
-}
-
-/* ============================
-   SECTION DIVIDER
-   ============================ */
-.section-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.15), rgba(139, 92, 246, 0.15), transparent);
-}
-
-/* ============================
-   SCROLL-TO-TOP BUTTON
-   ============================ */
-.scroll-top-btn {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(12, 12, 29, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 50;
-  transition: all 0.3s ease;
-}
-.scroll-top-btn:hover {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-  transform: translateY(-3px);
-}
-
-/* ============================
-   3D TILT CARD
-   ============================ */
-.tilt-card {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: transform 0.1s ease-out;
-}
-
-/* ============================
-   CONTAINER
-   ============================ */
-.container-custom {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03) 0px,
+    transparent 1px,
+    transparent 2px
+  );
+  opacity: 0.4;
 }

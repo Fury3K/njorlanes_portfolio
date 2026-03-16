@@ -1,45 +1,50 @@
 "use client";
 
-import React, { useState, FormEvent, useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import React, { useState, FormEvent, useRef } from "react";
+import { gsap } from "@/app/lib/gsap";
 
-const Contact = () => {
+const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
-  
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-    setErrorMessage('');
+    setStatus("loading");
+    setErrorMessage("");
 
     // Button push animation on submit
     if (formRef.current) {
-        gsap.fromTo(formRef.current.querySelector('button'), 
-            { scale: 0.95 }, 
-            { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" }
-        );
+      gsap.fromTo(
+        formRef.current.querySelector("button"),
+        { scale: 0.95 },
+        { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" }
+      );
     }
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -47,175 +52,229 @@ const Contact = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Something went wrong');
+        throw new Error(data.error || "Something went wrong");
       }
 
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+
       setTimeout(() => {
-        setStatus('idle');
+        setStatus("idle");
       }, 5000);
     } catch (error) {
-      setStatus('error');
-      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message');
+      setStatus("error");
+      setErrorMessage(
+        error instanceof Error ? error.message : "Failed to send message"
+      );
     }
   };
 
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
-        {/* Animated Background Mesh */}
-        <div className="absolute inset-0 opacity-20">
-           <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-[var(--color-primary)] to-transparent rounded-full mix-blend-screen filter blur-[100px] animate-pulse" style={{ animationDuration: '8s' }}></div>
-           <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-[var(--color-secondary)] to-transparent rounded-full mix-blend-screen filter blur-[120px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }}></div>
+    <section
+      id="contact"
+      className="py-28 px-6 lg:px-10 max-w-7xl mx-auto relative"
+    >
+      {/* Section header */}
+      <div className="relative mb-20 gs-reveal opacity-0">
+        <span className="section-number">04</span>
+        <div className="relative z-10">
+          <div className="section-label mb-3">// Get in Touch</div>
+          <h2 className="gs-scramble font-display font-extrabold text-3xl md:text-4xl tracking-tight">
+            What&apos;s Next?
+          </h2>
+        </div>
+        <div className="accent-line w-32 mt-4" />
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-16">
+        {/* Left: Contact info + socials */}
+        <div className="gs-reveal opacity-0 flex flex-col justify-center">
+          <h3 className="font-display font-extrabold text-5xl sm:text-6xl tracking-[-0.04em] leading-[0.88] mb-8">
+            <span className="text-[var(--color-text-primary)] block">
+              Get In
+            </span>
+            <span className="text-[var(--color-text-primary)] block">Touch.</span>
+          </h3>
+
+          <p className="text-[var(--color-body)] leading-relaxed mb-10 max-w-md">
+            Although I&apos;m currently looking for new opportunities, my inbox
+            is always open. Whether you have a question or just want to say hi,
+            I&apos;ll try my best to get back to you!
+          </p>
+
+          {/* Contact info rows */}
+          <div className="space-y-4 mb-10">
+            {[
+              {
+                icon: "fa-envelope",
+                label: "Email",
+                value: "n8thanjohn@gmail.com",
+              },
+              {
+                icon: "fa-phone",
+                label: "Phone",
+                value: "0969 534 3645",
+              },
+              {
+                icon: "fa-location-dot",
+                label: "Location",
+                value: "Guizo, Mandaue City, Philippines 6014",
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 group">
+                <div className="w-11 h-11 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-muted)] group-hover:text-white group-hover:border-white/20 transition-all duration-300 shrink-0">
+                  <i className={`fa-solid ${item.icon} text-sm`} />
+                </div>
+                <div>
+                  <p className="text-[10px] text-[var(--color-text-muted)] font-mono uppercase tracking-wider mb-0.5">
+                    {item.label}
+                  </p>
+                  <p className="text-sm text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)] transition-colors">
+                    {item.value}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Social buttons */}
+          <div className="flex gap-3">
+            {[
+              {
+                icon: "fa-brands fa-facebook-f",
+                url: "https://www.facebook.com/n8thanjohn",
+                title: "Facebook",
+              },
+              {
+                icon: "fa-brands fa-instagram",
+                url: "https://www.instagram.com/nj.orlanes/",
+                title: "Instagram",
+              },
+              {
+                icon: "fa-brands fa-github",
+                url: "https://github.com/Fury3K",
+                title: "GitHub",
+              },
+              {
+                icon: "fa-solid fa-file-arrow-down",
+                url: "/ORLANES_Resume.pdf",
+                title: "Download CV",
+                download: "Nathan_John_Orlanes_Resume.pdf",
+              },
+            ].map((social, i) => (
+              <a
+                key={i}
+                href={social.url}
+                target={social.download ? "_self" : "_blank"}
+                rel="noopener noreferrer"
+                download={social.download}
+                className="social-btn"
+                title={social.title}
+              >
+                <i className={social.icon} />
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="container-custom max-w-6xl relative z-10">
-             <h2 className="text-3xl md:text-4xl font-bold mb-20 flex justify-center items-center gap-4 gs-heading" style={{ fontFamily: 'var(--font-display)' }}>
-                <span className="text-[var(--color-primary)] font-mono text-xl">04.</span>
-                <span className="text-white">What&apos;s Next?</span>
-            </h2>
+        {/* Right: Form */}
+        <div className="gs-reveal opacity-0 glass-card p-8 lg:p-10 relative overflow-hidden">
+          <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
-            <div className="grid md:grid-cols-2 gap-16 items-start">
-                
-                {/* Left Column: Info */}
-                <div className="space-y-10 gs-slide-left">
-                     <div>
-                        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>Get In Touch</h1>
-                        <p className="text-gray-400 text-lg leading-relaxed">
-                            Although I&apos;m currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
-                        </p>
-                    </div>
+          <h3 className="text-[var(--color-text-primary)] font-display font-bold text-xl mb-8 flex items-center gap-3 relative z-10">
+            Send me a message
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+          </h3>
 
-                    <div className="space-y-6 pt-4">
-                        {[
-                            { icon: 'fa-envelope', label: 'Email', value: 'n8thanjohn@gmail.com' },
-                            { icon: 'fa-phone', label: 'Phone', value: '0969 534 3645' },
-                            { icon: 'fa-location-dot', label: 'Location', value: 'Guizo, Mandaue City, Philippines 6014' },
-                        ].map((item, i) => (
-                            <div key={i} className="flex items-center gap-5 group">
-                                <div className="w-14 h-14 rounded-xl bg-[var(--color-dark-card)] border border-[var(--color-primary)]/20 flex items-center justify-center text-[var(--color-primary)] group-hover:border-[var(--color-primary)] group-hover:bg-[var(--color-primary)]/10 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(0,240,255,0.2)]">
-                                    <i className={`fa-solid ${item.icon} text-xl group-hover:scale-110 transition-transform duration-300`}></i>
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-500 font-mono mb-1">{item.label}</p>
-                                    <p className="font-medium text-gray-200 group-hover:text-white transition-colors">{item.value}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="flex gap-4 pt-6">
-                        {[
-                            { icon: 'fa-facebook-f', url: 'https://www.facebook.com/n8thanjohn', title: 'Facebook' },
-                            { icon: 'fa-instagram', url: 'https://www.instagram.com/nj.orlanes/', title: 'Instagram' },
-                            { icon: 'fa-github', url: 'https://github.com/Fury3K', title: 'GitHub' },
-                            { icon: 'fa-file-arrow-down', url: '/ORLANES_Resume.pdf', title: 'Download CV', download: "Nathan_John_Orlanes_Resume.pdf" },
-                        ].map((social, i) => (
-                            <a 
-                                key={i}
-                                href={social.url} 
-                                target={social.download ? "_self" : "_blank"} 
-                                rel="noopener noreferrer" 
-                                download={social.download}
-                                className="w-12 h-12 rounded-full border border-gray-700 bg-[var(--color-dark-card)] flex items-center justify-center text-gray-400 hover:text-[var(--color-dark-bg)] hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] hover:shadow-[0_0_15px_rgba(0,240,255,0.5)] transition-all duration-300 transform hover:-translate-y-2 relative group gs-pop"
-                                style={{ transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
-                                title={social.title}
-                            >
-                                <i className={`fa-brands ${social.icon} text-lg ${social.icon === 'fa-file-arrow-down' ? 'fa-solid' : ''}`}></i>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Right Column: Form */}
-                <div className="glass-card p-8 md:p-10 rounded-2xl gs-slide-right relative">
-                    {/* Glowing Accent Ring */}
-                    <div className="absolute -inset-px rounded-2xl border border-[var(--color-primary)]/30 opacity-0 px-transition hover:opacity-100 transition-opacity duration-500"></div>
-
-                    <h3 className="text-2xl font-bold text-white mb-8 font-mono flex items-center gap-3">
-                        Send me a message
-                        <span className="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse"></span>
-                    </h3>
-                    
-                    <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div className="form-control relative group">
-                                <input 
-                                    type="text" 
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                    className="input peer w-full bg-[#0a0a1a] border-b-2 border-t-0 border-l-0 border-r-0 border-gray-800 rounded-t-lg rounded-b-none focus:border-[var(--color-primary)] focus:bg-[#0f0f2a] focus:outline-none text-gray-200 transition-all duration-300 pt-6 pb-2 px-4 h-14" 
-                                />
-                                <label className={`absolute left-4 font-mono text-sm transition-all duration-300 pointer-events-none ${formData.name ? 'top-2 text-[10px] text-[var(--color-primary)]' : 'top-4 text-gray-500 peer-focus:top-2 peer-focus:text-[10px] peer-focus:text-[var(--color-primary)]'}`}>
-                                    Your Name
-                                </label>
-                            </div>
-                            <div className="form-control relative group">
-                                <input 
-                                    type="email" 
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                    className="input peer w-full bg-[#0a0a1a] border-b-2 border-t-0 border-l-0 border-r-0 border-gray-800 rounded-t-lg rounded-b-none focus:border-[var(--color-primary)] focus:bg-[#0f0f2a] focus:outline-none text-gray-200 transition-all duration-300 pt-6 pb-2 px-4 h-14" 
-                                />
-                                <label className={`absolute left-4 font-mono text-sm transition-all duration-300 pointer-events-none ${formData.email ? 'top-2 text-[10px] text-[var(--color-primary)]' : 'top-4 text-gray-500 peer-focus:top-2 peer-focus:text-[10px] peer-focus:text-[var(--color-primary)]'}`}>
-                                    Your Email
-                                </label>
-                            </div>
-                        </div>
-                        <div className="form-control relative group">
-                            <textarea 
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                required
-                                className="textarea peer w-full h-32 bg-[#0a0a1a] border-b-2 border-t-0 border-l-0 border-r-0 border-gray-800 rounded-t-lg rounded-b-none focus:border-[var(--color-primary)] focus:bg-[#0f0f2a] focus:outline-none text-gray-200 resize-none transition-all duration-300 pt-8 pb-4 px-4" 
-                            ></textarea>
-                            <label className={`absolute left-4 font-mono text-sm transition-all duration-300 pointer-events-none ${formData.message ? 'top-3 text-[10px] text-[var(--color-primary)]' : 'top-6 text-gray-500 peer-focus:top-3 peer-focus:text-[10px] peer-focus:text-[var(--color-primary)]'}`}>
-                                How can I help you?
-                            </label>
-                        </div>
-                        
-                        {status === 'error' && (
-                            <div className="alert alert-error bg-red-900/10 border border-red-900/50 text-red-200 text-sm rounded-lg">
-                                <i className="fa-solid fa-circle-exclamation"></i>
-                                <span>{errorMessage}</span>
-                            </div>
-                        )}
-                        
-                        {status === 'success' && (
-                            <div className="alert alert-success bg-green-900/10 border border-green-900/50 text-green-300 text-sm rounded-lg">
-                                <i className="fa-solid fa-circle-check"></i>
-                                <span>Message sent successfully! I&apos;ll get back to you soon.</span>
-                            </div>
-                        )}
-
-                        <div className="form-control mt-4">
-                            <button 
-                                type="submit" 
-                                disabled={status === 'loading'}
-                                className="magnetic-btn w-full flex justify-center py-4 rounded-xl normal-case font-mono text-lg overflow-hidden shimmer"
-                            >
-                                {status === 'loading' ? (
-                                    <span className="flex items-center gap-2">
-                                        <span className="loading loading-spinner loading-sm"></span>
-                                        Sending...
-                                    </span>
-                                ) : (
-                                    <span className="flex items-center gap-2 relative z-10">
-                                        Send Message <i className="fa-regular fa-paper-plane ml-1"></i>
-                                    </span>
-                                )}
-                            </button>
-                        </div>
-                    </form>
-                </div>
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-5 relative z-10"
+          >
+            <div className="grid md:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-[10px] font-mono text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="John Doe"
+                  className="form-input"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-mono text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="john@example.com"
+                  className="form-input"
+                />
+              </div>
             </div>
+
+            <div>
+              <label className="block text-[10px] font-mono text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
+                Message
+              </label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                placeholder="How can I help you?"
+                className="form-input resize-none"
+              />
+            </div>
+
+            {/* Error alert */}
+            {status === "error" && (
+              <div className="flex items-center gap-3 p-4 rounded-lg bg-red-900/10 border border-red-900/30 text-red-400 text-sm">
+                <i className="fa-solid fa-circle-exclamation" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
+            {/* Success alert */}
+            {status === "success" && (
+              <div className="flex items-center gap-3 p-4 rounded-lg bg-white/5 border border-white/20 text-white text-sm">
+                <i className="fa-solid fa-circle-check" />
+                <span>
+                  Message sent successfully! I&apos;ll get back to you soon.
+                </span>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="w-full py-3.5 bg-white text-[var(--color-background)] font-bold text-sm uppercase tracking-widest rounded-lg hover:bg-gray-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shimmer-gold mt-2"
+            >
+              {status === "loading" ? (
+                <span className="flex items-center justify-center gap-2">
+                  <span className="w-4 h-4 border-2 border-[var(--color-background)]/40 border-t-[var(--color-background)] rounded-full animate-spin" />
+                  Sending...
+                </span>
+              ) : (
+                <span className="flex items-center justify-center gap-2">
+                  Send Message
+                  <i className="fa-regular fa-paper-plane text-xs" />
+                </span>
+              )}
+            </button>
+          </form>
         </div>
+      </div>
     </section>
   );
 };

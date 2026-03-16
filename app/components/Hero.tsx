@@ -1,149 +1,102 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
 
-const Hero = () => {
-  const heroRef = useRef<HTMLElement>(null);
-  const nameRef = useRef<HTMLHeadingElement>(null);
+import React from "react";
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-      // Greeting
-      tl.fromTo('.hero-greeting', 
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8 }
-      );
-
-      // Name — character by character
-      if (nameRef.current) {
-        const text = nameRef.current.innerText;
-        nameRef.current.innerHTML = '';
-        const chars = text.split('');
-        chars.forEach((char, i) => {
-          const span = document.createElement('span');
-          span.textContent = char === ' ' ? '\u00A0' : char;
-          span.className = 'hero-char inline-block';
-          span.style.opacity = '0';
-          nameRef.current!.appendChild(span);
-        });
-
-        tl.fromTo('.hero-char',
-          { opacity: 0, y: 80, rotateX: -90 },
-          { 
-            opacity: 1, y: 0, rotateX: 0,
-            duration: 0.8, stagger: 0.04,
-            ease: 'back.out(1.7)'
-          },
-          '-=0.4'
-        );
-      }
-
-      // Subtitle
-      tl.fromTo('.hero-subtitle',
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1 },
-        '-=0.5'
-      );
-
-      // Description
-      tl.fromTo('.hero-desc',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8 },
-        '-=0.5'
-      );
-
-      // CTA buttons
-      tl.fromTo('.hero-cta',
-        { opacity: 0, y: 30, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.15 },
-        '-=0.4'
-      );
-
-      // Floating orbs continuous animation
-      gsap.to('.orb-1', {
-        x: 60, y: -80, scale: 1.1,
-        duration: 8, repeat: -1, yoyo: true,
-        ease: 'sine.inOut'
-      });
-      gsap.to('.orb-2', {
-        x: -40, y: 60, scale: 0.9,
-        duration: 10, repeat: -1, yoyo: true,
-        ease: 'sine.inOut',
-        delay: 2
-      });
-      gsap.to('.orb-3', {
-        x: 30, y: -50, scale: 1.05,
-        duration: 12, repeat: -1, yoyo: true,
-        ease: 'sine.inOut',
-        delay: 4
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
+const Hero: React.FC = () => {
   return (
-    <section id="home" ref={heroRef} className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
-      {/* Dot Grid Background */}
-      <div className="absolute inset-0 dot-grid opacity-40"></div>
+    <section
+      id="home"
+      className="min-h-screen flex items-center pt-24 pb-20 px-6 lg:px-10 max-w-7xl mx-auto relative"
+    >
+      {/* Background glow orbs */}
+      <div className="glow-orb w-[600px] h-[600px] bg-white opacity-[0.02] -top-[15%] right-[5%]" />
+      <div className="glow-orb w-[500px] h-[500px] bg-white opacity-[0.015] bottom-[5%] left-[0%]" />
+      <div className="absolute inset-0 grid-bg pointer-events-none opacity-40" />
 
-      {/* Gradient Orbs */}
-      <div className="orb orb-cyan orb-1 w-[500px] h-[500px] absolute top-1/4 -left-20 opacity-30"></div>
-      <div className="orb orb-violet orb-2 w-[400px] h-[400px] absolute bottom-1/4 right-0 opacity-25"></div>
-      <div className="orb orb-pink orb-3 w-[300px] h-[300px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15"></div>
+      <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center w-full relative z-10">
+        {/* Left: Content */}
+        <div className="lg:col-span-7 order-2 lg:order-1">
+          <div className="section-label mb-5 gs-hero-reveal opacity-0">
+            &lt;/&gt; Full-Stack Developer
+          </div>
 
-      {/* Radial fadeout at edges */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,var(--color-dark-bg)_80%)]"></div>
-
-      <div className="container-custom z-10 text-center">
-        <div className="max-w-4xl mx-auto">
-          <p className="hero-greeting text-[var(--color-primary)] font-mono mb-4 text-lg tracking-wider opacity-0">
-            &lt;Hello, I&apos;m /&gt;
-          </p>
-
-          <h1
-            ref={nameRef}
-            className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-4 text-white"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Nathan John.
+          <h1 className="gs-hero-title font-display font-bold text-[clamp(2.8rem,7vw,5.5rem)] leading-[0.92] tracking-[-0.03em] mb-6">
+            <span className="text-[var(--color-text-primary)] block">
+              Nathan
+            </span>
+            <span className="text-[var(--color-text-primary)] block">
+              John
+            </span>
+            <span className="text-[var(--color-text-primary)] block">Orlanes.</span>
           </h1>
 
-          <h2 className="hero-subtitle text-3xl md:text-5xl lg:text-6xl font-bold mb-8 opacity-0" style={{ fontFamily: 'var(--font-display)' }}>
-            I build{' '}
-            <span className="text-gradient">digital experiences</span>
-            <span className="text-[var(--color-primary)]">.</span>
-          </h2>
+          <div className="accent-line w-20 mb-6 gs-hero-reveal opacity-0" />
 
-          <p className="hero-desc text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed opacity-0">
-            Full-Stack Developer focused on creating accessible, pixel-perfect, and performant web & mobile applications.
+          <p className="text-[var(--color-body)] text-[0.9375rem] leading-relaxed max-w-lg mb-8 gs-hero-reveal opacity-0">
+            Full-Stack Developer focused on creating accessible, pixel-perfect,
+            and performant web &amp; mobile applications.
           </p>
 
-          <div className="flex flex-wrap gap-5 justify-center items-center">
+          <div className="flex flex-wrap gap-4 gs-hero-reveal opacity-0">
             <a
               href="#projects"
-              className="hero-cta magnetic-btn rounded-lg opacity-0"
+              className="inline-flex items-center gap-2 px-7 py-3 bg-white text-[var(--color-background)] text-sm font-semibold transition-all duration-300 uppercase tracking-widest rounded-lg shimmer-gold hover:bg-gray-200"
             >
               View My Work
-              <i className="fa-solid fa-arrow-right"></i>
+              <span className="text-xs">&#8594;</span>
             </a>
-
             <a
               href="/ORLANES_Resume.pdf"
               download="Nathan_John_Orlanes_Resume.pdf"
-              className="hero-cta magnetic-btn rounded-lg opacity-0 !border-gray-700 !text-gray-400 hover:!text-[var(--color-dark-bg)] hover:!border-transparent"
+              className="inline-flex items-center gap-2 px-7 py-3 border border-[var(--color-border)] text-[var(--color-text-secondary)] text-sm font-semibold hover:border-white/20 hover:text-[var(--color-text-primary)] transition-all duration-300 uppercase tracking-widest rounded-lg"
             >
-              <i className="fa-solid fa-download"></i>
               Download CV
+              <span className="text-xs">&#8599;</span>
             </a>
+          </div>
+        </div>
+
+        {/* Right: Portrait */}
+        <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end gs-hero-reveal opacity-0">
+          <div className="relative max-w-xs w-full group">
+            {/* Border glow behind image */}
+            <div className="absolute -inset-[2px] rounded-xl bg-white opacity-[0.06] group-hover:opacity-[0.12] blur-sm transition-opacity duration-500" />
+
+            {/* Image */}
+            <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-[var(--color-surface)]">
+              <img
+                src="/Profile.jpg"
+                alt="Nathan John Orlanes"
+                className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
+
+              {/* Available badge */}
+              <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 bg-[var(--color-background)]/80 backdrop-blur-sm rounded-full border border-[var(--color-border)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-[9px] font-mono text-[var(--color-text-secondary)] uppercase tracking-wider">
+                  Available
+                </span>
+              </div>
+
+              {/* Location */}
+              <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2.5 py-1 bg-[var(--color-background)]/80 backdrop-blur-sm rounded-full border border-[var(--color-border)]">
+                <span className="text-[9px] font-mono text-[var(--color-text-muted)]">
+                  Mandaue City, PH
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--color-dark-bg)] to-transparent"></div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 gs-hero-reveal opacity-0">
+        <span className="text-[10px] font-mono text-[var(--color-text-muted)] uppercase tracking-widest">
+          Scroll
+        </span>
+        <div className="w-px h-6 bg-gradient-to-b from-white/20 to-transparent" />
+      </div>
     </section>
   );
 };

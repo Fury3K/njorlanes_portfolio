@@ -1,99 +1,71 @@
 "use client";
-import React from 'react';
 
-const Skills = () => {
-  const skillCategories = [
-    {
-      title: "Frontend",
-      icon: "fa-solid fa-palette",
-      skills: [
-        { name: "React 19", icon: "fa-brands fa-react" },
-        { name: "Next.js 16", icon: "fa-solid fa-n" },
-        { name: "Tailwind CSS", icon: "fa-brands fa-css3-alt" },
-        { name: "DaisyUI", icon: "fa-solid fa-swatchbook" },
-        { name: "GSAP", icon: "fa-solid fa-wand-magic-sparkles" },
-        { name: "HTML5", icon: "fa-brands fa-html5" },
-        { name: "CSS3", icon: "fa-brands fa-css3-alt" },
-        { name: "JavaScript", icon: "fa-brands fa-js" },
-        { name: "TypeScript", icon: "fa-brands fa-js" },
-      ],
-    },
-    {
-      title: "Backend",
-      icon: "fa-solid fa-server",
-      skills: [
-        { name: "Java", icon: "fa-brands fa-java" },
-        { name: "Python", icon: "fa-brands fa-python" },
-        { name: "Node.js", icon: "fa-brands fa-node" },
-        { name: "Express", icon: "fa-solid fa-server" },
-        { name: "Spring Boot", icon: "fa-solid fa-leaf" },
-        { name: "PHP", icon: "fa-brands fa-php" },
-        { name: "C", icon: "fa-solid fa-c" },
-        { name: "SQL", icon: "fa-solid fa-database" },
-        { name: "PostgreSQL", icon: "fa-solid fa-database" },
-        { name: "MongoDB", icon: "fa-solid fa-leaf" },
-        { name: "Firebase", icon: "fa-solid fa-fire" },
-      ],
-    },
-    {
-      title: "Tools & Platforms",
-      icon: "fa-solid fa-toolbox",
-      skills: [
-        { name: "Git", icon: "fa-brands fa-git-alt" },
-        { name: "GitHub", icon: "fa-brands fa-github" },
-        { name: "AWS", icon: "fa-brands fa-aws" },
-        { name: "Vercel", icon: "fa-solid fa-cloud-arrow-up" },
-        { name: "Netlify", icon: "fa-solid fa-diamond" },
-        { name: "Maven/Gradle", icon: "fa-solid fa-scroll" },
-        { name: "Postman", icon: "fa-solid fa-paper-plane" },
-        { name: "IntelliJ/VS Code", icon: "fa-solid fa-code" },
-      ],
-    },
-    {
-      title: "Mobile",
-      icon: "fa-solid fa-mobile-screen-button",
-      skills: [
-        { name: "Kotlin", icon: "fa-brands fa-android" },
-        { name: "Jetpack Compose", icon: "fa-solid fa-mobile-screen" },
-        { name: "Android", icon: "fa-brands fa-android" },
-      ],
-    },
-  ];
+import React from "react";
 
+interface Skill {
+  name: string;
+  icon: string;
+}
+
+function SkillGroup({ number, label, skills }: { number: string; label: string; skills: Skill[] }) {
   return (
-    <section id="skills" className="py-32 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-dark-bg)] via-[var(--color-dark-surface)]/20 to-[var(--color-dark-bg)]"></div>
-      
-      {/* Subtle decorative orb */}
-      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-[var(--color-secondary)] rounded-full blur-[150px] opacity-[0.04] pointer-events-none"></div>
+    <div>
+      <div className="flex items-center gap-3 mb-5">
+        <span className="text-[10px] font-mono px-2 py-0.5 border border-white/10 rounded text-[var(--color-text-secondary)] font-bold">{number}</span>
+        <span className="text-[var(--color-text-secondary)] font-semibold uppercase tracking-widest text-xs">{label}</span>
+      </div>
+      <div className="flex flex-wrap gap-2.5">
+        {skills.map((s, i) => (
+          <span key={i} className="tech-badge"><i className={s.icon} /> {s.name}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-      <div className="container-custom relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 flex items-center gap-4 gs-heading" style={{ fontFamily: 'var(--font-display)' }}>
-          <span className="text-[var(--color-primary)] font-mono text-xl">02.</span>
-          <span className="text-white">Tech Stack</span>
-          <span className="h-px flex-grow max-w-xs ml-4 bg-gradient-to-r from-gray-800 to-transparent"></span>
-        </h2>
+const skillCategories = [
+  { number: "01", label: "Frontend", skills: [
+    { name: "React 19", icon: "fa-brands fa-react" }, { name: "Next.js 16", icon: "fa-solid fa-n" },
+    { name: "Tailwind CSS", icon: "fa-brands fa-css3-alt" }, { name: "GSAP", icon: "fa-solid fa-wand-magic-sparkles" },
+    { name: "HTML5", icon: "fa-brands fa-html5" }, { name: "CSS3", icon: "fa-brands fa-css3-alt" },
+    { name: "JavaScript", icon: "fa-brands fa-js" }, { name: "TypeScript", icon: "fa-brands fa-js" },
+  ]},
+  { number: "02", label: "Backend", skills: [
+    { name: "Java", icon: "fa-brands fa-java" }, { name: "Python", icon: "fa-brands fa-python" },
+    { name: "Node.js", icon: "fa-brands fa-node" }, { name: "Express", icon: "fa-solid fa-server" },
+    { name: "Spring Boot", icon: "fa-solid fa-leaf" }, { name: "PHP", icon: "fa-brands fa-php" },
+    { name: "C", icon: "fa-solid fa-c" }, { name: "SQL", icon: "fa-solid fa-database" },
+    { name: "PostgreSQL", icon: "fa-solid fa-database" }, { name: "MongoDB", icon: "fa-solid fa-leaf" },
+    { name: "Firebase", icon: "fa-solid fa-fire" },
+  ]},
+  { number: "03", label: "Tools & Platforms", skills: [
+    { name: "Git", icon: "fa-brands fa-git-alt" }, { name: "GitHub", icon: "fa-brands fa-github" },
+    { name: "AWS", icon: "fa-brands fa-aws" }, { name: "Vercel", icon: "fa-solid fa-cloud-arrow-up" },
+    { name: "Netlify", icon: "fa-solid fa-diamond" }, { name: "Maven/Gradle", icon: "fa-solid fa-scroll" },
+    { name: "Postman", icon: "fa-solid fa-paper-plane" }, { name: "IntelliJ/VS Code", icon: "fa-solid fa-code" },
+  ]},
+  { number: "04", label: "Mobile", skills: [
+    { name: "Kotlin", icon: "fa-brands fa-android" }, { name: "Jetpack Compose", icon: "fa-solid fa-mobile-screen" },
+    { name: "Android", icon: "fa-brands fa-android" },
+  ]},
+];
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="gs-reveal">
-              <h3 className="text-xl font-bold text-white mb-6 pl-2 flex items-center gap-3 underline-draw" style={{ fontFamily: 'var(--font-display)' }}>
-                <i className={`${category.icon} text-[var(--color-primary)] text-lg`}></i>
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill, idx) => (
-                  <div
-                    key={idx}
-                    className="gs-pop group relative flex items-center gap-2 rounded-xl px-4 py-2.5 cursor-default glow-border bg-[var(--color-dark-card)] hover:bg-[var(--color-primary)]/5 transition-all duration-300"
-                  >
-                    <i className={`${skill.icon} text-lg text-gray-500 group-hover:text-[var(--color-primary)] transition-all duration-300 group-hover:scale-110`}></i>
-                    <span className="text-sm font-mono text-gray-400 group-hover:text-gray-200 transition-colors duration-300">{skill.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+const Skills: React.FC = () => {
+  return (
+    <section id="skills" className="py-28 px-6 lg:px-10 max-w-7xl mx-auto relative">
+      <div className="relative mb-20 gs-reveal opacity-0">
+        <span className="section-number">02</span>
+        <div className="relative z-10">
+          <div className="section-label mb-3">// Tech Stack</div>
+          <h2 className="gs-scramble font-display font-bold text-3xl md:text-4xl tracking-tight">Skills</h2>
+        </div>
+        <div className="accent-line w-32 mt-4" />
+      </div>
+
+      <div className="glass-card p-8 md:p-10 gs-reveal opacity-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {skillCategories.map((cat, i) => (
+            <SkillGroup key={i} number={cat.number} label={cat.label} skills={cat.skills} />
           ))}
         </div>
       </div>

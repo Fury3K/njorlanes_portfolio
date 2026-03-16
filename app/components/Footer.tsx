@@ -1,32 +1,56 @@
-import React from 'react';
+"use client";
 
-const Footer = () => {
+import React, { useRef } from "react";
+import { gsap, useGSAP } from "@/app/lib/gsap";
+
+const Footer: React.FC = () => {
+  const footerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        ".footer-line",
+        { scaleX: 0, transformOrigin: "left" },
+        {
+          scaleX: 1,
+          duration: 1.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 95%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    },
+    { scope: footerRef }
+  );
+
   return (
-    <footer className="relative bg-[var(--color-dark-bg)] overflow-hidden">
-      {/* Top gradient line divider */}
-      <div className="h-px bg-gradient-to-r from-transparent via-[var(--color-primary)]/20 to-transparent"></div>
+    <footer
+      ref={footerRef}
+      className="relative border-t border-[var(--color-border)] overflow-hidden"
+    >
+      {/* Animated top line */}
+      <div
+        className="footer-line absolute top-0 left-0 right-0 h-px bg-white/30 opacity-40"
+        style={{ transform: "scaleX(0)" }}
+      />
 
-      <div className="pt-12 pb-8 container-custom text-center relative z-10">
-        <div className="inline-block group cursor-pointer">
-          <p className="font-mono text-sm text-gray-500 mb-2 transition-colors duration-300">
-            Designed &amp; Built by
-          </p>
-          <p className="font-bold text-lg md:text-xl text-gray-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[var(--color-primary)] group-hover:to-[var(--color-secondary)] transition-all duration-500" style={{ fontFamily: 'var(--font-display)' }}>
-            Nathan John Orlanes
-          </p>
-        </div>
-        
-        <div className="mt-6 flex justify-center items-center gap-1 text-xs font-mono text-gray-600">
-          <span>&copy; {new Date().getFullYear()}</span>
-          <span className="mx-1 text-[var(--color-primary)]/50">•</span>
-          <span className="flex items-center gap-1 group">
-            Made with <i className="fa-solid fa-heart text-[var(--color-accent)]/80 text-[10px] group-hover:animate-ping"></i>
-          </span>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <span className="font-display font-extrabold text-lg text-[var(--color-text-primary)] hover:text-[var(--color-text-secondary)] transition-colors cursor-default">
+          NJ<span className="text-[var(--color-text-muted)]">.</span>
+        </span>
+
+        <span className="text-[11px] text-[var(--color-text-muted)] font-mono text-center">
+          &copy; {new Date().getFullYear()} Nathan John Orlanes &middot; All
+          rights reserved
+        </span>
+
+        <span className="text-[11px] text-[var(--color-text-muted)] font-mono">
+          Next.js &middot; Tailwind &middot; GSAP
+        </span>
       </div>
-      
-      {/* Bottom accent line edge */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent opacity-30"></div>
     </footer>
   );
 };

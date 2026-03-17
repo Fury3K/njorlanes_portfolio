@@ -61,13 +61,13 @@ const Navbar: React.FC = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[var(--color-background)]/80 backdrop-blur-2xl border-b border-[var(--color-border)]/50 py-3"
+            ? "bg-[var(--color-background)]/90 backdrop-blur-2xl border-b border-[var(--color-border)]/50 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
             : "bg-transparent py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center">
           <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="font-display font-bold text-xl group">
-            <span className="text-[var(--color-text-primary)] transition-colors duration-300">NJ</span>
+            <span className="text-[var(--color-text-primary)] transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">NJ</span>
             <span className="text-[var(--color-text-muted)]">.</span>
           </a>
 
@@ -77,9 +77,9 @@ const Navbar: React.FC = () => {
                 key={link.num}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`px-3.5 py-2 font-mono text-[11px] uppercase tracking-wider transition-all duration-300 rounded-md ${
+                className={`nav-link-underline px-3.5 py-2 font-mono text-[11px] uppercase tracking-wider transition-all duration-300 rounded-md ${
                   activeSection === link.href
-                    ? "text-[var(--color-text-primary)]"
+                    ? "text-[var(--color-text-primary)] is-active"
                     : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
                 }`}
               >
@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "#contact")}
-              className="ml-4 px-5 py-2 text-[11px] font-mono uppercase tracking-wider rounded-lg bg-white text-[var(--color-background)] font-semibold hover:bg-gray-200 transition-all duration-300"
+              className="ml-4 px-5 py-2 text-[11px] font-mono uppercase tracking-wider rounded-lg bg-white text-[var(--color-background)] font-semibold hover:bg-gray-200 hover:shadow-[0_4px_16px_rgba(255,255,255,0.15)] transition-all duration-300 shimmer-gold"
             >
               Hire Me
             </a>
@@ -104,17 +104,18 @@ const Navbar: React.FC = () => {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden absolute top-full right-4 left-4 mt-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-4 backdrop-blur-xl shadow-2xl">
-            {navLinks.map((link) => (
+          <div className="md:hidden absolute top-full right-4 left-4 mt-2 bg-[var(--color-surface)]/95 backdrop-blur-xl border border-[var(--color-border)] rounded-xl p-4 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+            {navLinks.map((link, i) => (
               <a
                 key={link.num}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`block px-4 py-3 font-mono text-sm rounded-lg transition-colors ${
+                className={`block px-4 py-3 font-mono text-sm rounded-lg transition-all duration-300 ${
                   activeSection === link.href
                     ? "text-[var(--color-text-primary)] bg-[var(--color-accent-muted)]"
-                    : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
+                    : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:translate-x-1"
                 }`}
+                style={{ animationDelay: `${i * 75}ms` }}
               >
                 <span className="text-[var(--color-text-muted)] mr-2 opacity-50">{link.num}</span>
                 {link.label}

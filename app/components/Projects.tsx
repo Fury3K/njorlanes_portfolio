@@ -37,7 +37,7 @@ const Projects: React.FC = () => {
           tagsEl.innerHTML = "";
           project.badges.forEach((badge) => {
             const span = document.createElement("span");
-            span.className = "project-tag";
+            span.className = "tool-pill";
             span.textContent = badge;
             tagsEl.appendChild(span);
           });
@@ -51,8 +51,8 @@ const Projects: React.FC = () => {
             a.target = "_blank";
             a.rel = "noopener noreferrer";
             a.className =
-              "inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors font-mono";
-            a.innerHTML = '<i class="fa-brands fa-github"></i> GitHub';
+              "inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors font-mono group/link";
+            a.innerHTML = '<i class="fa-brands fa-github"></i> GitHub <i class="fa-solid fa-arrow-right text-[8px] opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all"></i>';
             linksEl.appendChild(a);
           }
           if (project.liveUrl) {
@@ -61,9 +61,9 @@ const Projects: React.FC = () => {
             a.target = "_blank";
             a.rel = "noopener noreferrer";
             a.className =
-              "inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors font-mono";
+              "inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors font-mono group/link";
             a.innerHTML =
-              '<i class="fa-solid fa-arrow-up-right-from-square"></i> Live';
+              '<i class="fa-solid fa-arrow-up-right-from-square"></i> Live <i class="fa-solid fa-arrow-right text-[8px] opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all"></i>';
             linksEl.appendChild(a);
           }
         }
@@ -91,7 +91,7 @@ const Projects: React.FC = () => {
   // Desktop sticky scroll
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.innerWidth < 1024) return; // lg breakpoint
+    if (window.innerWidth < 1024) return;
 
     const ctx = gsap.context(() => {
       const panels = document.querySelectorAll(".project-panel");
@@ -126,7 +126,7 @@ const Projects: React.FC = () => {
         </div>
       </div>
 
-      {/* ─── Desktop: Sticky scroll layout ─── */}
+      {/* Desktop: Sticky scroll layout */}
       <div className="hidden lg:grid lg:grid-cols-2 max-w-7xl mx-auto px-6 lg:px-10">
         {/* Left: Sticky info panel */}
         <div className="sticky top-0 h-screen flex items-center">
@@ -154,7 +154,7 @@ const Projects: React.FC = () => {
             </p>
             <div className="project-tags-display flex flex-wrap gap-2 mb-8">
               {projects[0].badges.map((badge, i) => (
-                <span key={i} className="project-tag">
+                <span key={i} className="tool-pill">
                   {badge}
                 </span>
               ))}
@@ -165,9 +165,10 @@ const Projects: React.FC = () => {
                   href={projects[0].githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors font-mono"
+                  className="inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors font-mono group/link"
                 >
                   <i className="fa-brands fa-github" /> GitHub
+                  <i className="fa-solid fa-arrow-right text-[8px] opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all" />
                 </a>
               )}
               {projects[0].liveUrl && (
@@ -175,9 +176,10 @@ const Projects: React.FC = () => {
                   href={projects[0].liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors font-mono"
+                  className="inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors font-mono group/link"
                 >
                   <i className="fa-solid fa-arrow-up-right-from-square" /> Live
+                  <i className="fa-solid fa-arrow-right text-[8px] opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all" />
                 </a>
               )}
             </div>
@@ -201,19 +203,25 @@ const Projects: React.FC = () => {
                   alt={project.title}
                   className={`w-full h-full object-cover object-top ${project.title === "Game of the Generals" ? "scale-110" : ""}`}
                 />
-                {/* Shimmer overlay */}
+                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/40 via-transparent to-transparent opacity-60" />
+                {/* Project number badge */}
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-[var(--color-background)]/80 backdrop-blur-sm rounded-full border border-[var(--color-border)] shimmer-badge">
+                  <span className="text-[9px] font-mono text-[var(--color-text-muted)]">
+                    {project.number} / 0{projects.length}
+                  </span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* ─── Mobile: Stacked cards ─── */}
-      <div className="lg:hidden max-w-7xl mx-auto px-6 pb-20 space-y-8">
+      {/* Mobile: Stacked cards */}
+      <div className="lg:hidden max-w-7xl mx-auto px-6 pb-20 space-y-6">
         {projects.map((project, i) => (
           <div key={i} className="gs-reveal opacity-0">
-            <div className="glass-card overflow-hidden">
+            <div className="glass-card overflow-hidden group">
               <div className="project-scroll-image is-active aspect-video relative">
                 <img
                   src={project.image}
@@ -221,6 +229,12 @@ const Projects: React.FC = () => {
                   className={`w-full h-full object-cover object-top ${project.title === "Game of the Generals" ? "scale-110" : ""}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/60 via-transparent to-transparent" />
+                {/* Number badge */}
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-[var(--color-background)]/80 backdrop-blur-sm rounded-full border border-[var(--color-border)] shimmer-badge">
+                  <span className="text-[9px] font-mono text-[var(--color-text-muted)]">
+                    {project.number} / 0{projects.length}
+                  </span>
+                </div>
               </div>
               <div className="p-6">
                 <span className="font-mono text-xs text-[var(--color-text-muted)] mb-2 block">
@@ -229,12 +243,12 @@ const Projects: React.FC = () => {
                 <h3 className="font-display font-extrabold text-xl text-[var(--color-text-primary)] mb-2">
                   {project.title}
                 </h3>
-                <p className="text-[var(--color-body)] text-sm leading-relaxed mb-4">
+                <p className="text-[var(--color-body)] text-sm leading-relaxed mb-4 line-clamp-3">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.badges.map((badge, j) => (
-                    <span key={j} className="project-tag">
+                    <span key={j} className="tool-pill">
                       {badge}
                     </span>
                   ))}

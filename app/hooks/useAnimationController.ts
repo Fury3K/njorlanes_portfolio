@@ -12,39 +12,17 @@ export function useAnimationController(bootState: BootState) {
     // Small delay for DOM to fully render after fade-in
     const timer = setTimeout(() => {
       const ctx = gsap.context(() => {
-        // ─── 1. Hero Title — Character-by-character reveal ───
-        const heroTitle = document.querySelector(".gs-hero-title");
-        if (heroTitle) {
-          const text = heroTitle.textContent || "";
-          const spans = heroTitle.querySelectorAll("span.block");
-
-          spans.forEach((span) => {
-            const chars = span.textContent || "";
-            span.innerHTML = "";
-            chars.split("").forEach((char) => {
-              const el = document.createElement("span");
-              el.textContent = char === " " ? "\u00A0" : char;
-              el.className = "inline-block hero-char";
-              el.style.opacity = "0";
-              span.appendChild(el);
-            });
-          });
-
+        // ─── 1. Hero greeting text — scale entrance ───
+        const greetingText = document.querySelector(".greeting-text");
+        if (greetingText) {
           gsap.fromTo(
-            ".hero-char",
-            {
-              opacity: 0,
-              y: 80,
-              rotateX: -60,
-              filter: "blur(6px)",
-            },
+            greetingText,
+            { opacity: 0, scale: 0.9, y: 30 },
             {
               opacity: 1,
+              scale: 1,
               y: 0,
-              rotateX: 0,
-              filter: "blur(0px)",
-              duration: 1.2,
-              stagger: 0.025,
+              duration: 1,
               ease: "power4.out",
             }
           );
@@ -169,6 +147,54 @@ export function useAnimationController(bootState: BootState) {
           },
         });
 
+        // ─── 5b. Tech card staggered fade-in-up ───
+        ScrollTrigger.batch(".tech-card", {
+          start: "top 90%",
+          onEnter: (elements) => {
+            gsap.fromTo(
+              elements,
+              { opacity: 0, y: 14, scale: 0.9 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.5,
+                stagger: 0.04,
+                ease: "back.out(1.7)",
+                overwrite: "auto",
+              }
+            );
+          },
+          onLeaveBack: (elements) => {
+            gsap.to(elements, {
+              opacity: 0,
+              y: 14,
+              scale: 0.9,
+              duration: 0.3,
+              overwrite: "auto",
+            });
+          },
+        });
+
+        // ─── 5c. Tool pill pop-in ───
+        ScrollTrigger.batch(".tool-pill", {
+          start: "top 92%",
+          onEnter: (elements) => {
+            gsap.fromTo(
+              elements,
+              { opacity: 0, scale: 0.85 },
+              {
+                opacity: 1,
+                scale: 1,
+                duration: 0.4,
+                stagger: 0.03,
+                ease: "back.out(1.5)",
+                overwrite: "auto",
+              }
+            );
+          },
+        });
+
         // ─── 6. Social button stagger ───
         ScrollTrigger.batch(".social-btn", {
           start: "top 90%",
@@ -228,6 +254,24 @@ export function useAnimationController(bootState: BootState) {
               overwrite: "auto",
             });
           },
+        });
+
+        // ─── 9. Wave divider reveal ───
+        gsap.utils.toArray<HTMLElement>(".wave-divider svg").forEach((svg) => {
+          gsap.fromTo(
+            svg,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: svg,
+                start: "top 95%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
         });
       });
 

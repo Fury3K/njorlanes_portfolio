@@ -37,15 +37,20 @@ const Footer: React.FC = () => {
         style={{ transform: "scaleX(0)" }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <span className="font-display font-extrabold text-lg text-[var(--color-text-primary)] hover:text-[var(--color-text-secondary)] transition-colors cursor-default">
-          NJ<span className="text-[var(--color-text-muted)]">.</span>
-        </span>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <a href="#home" className="font-display font-extrabold text-lg text-[var(--color-text-primary)] hover:text-[var(--color-text-secondary)] transition-colors group cursor-pointer">
+          NJ<span className="text-[var(--color-text-muted)] group-hover:text-white transition-colors">.</span>
+        </a>
 
-        <span className="text-[11px] text-[var(--color-text-muted)] font-mono text-center">
-          &copy; {new Date().getFullYear()} Nathan John Orlanes &middot; All
-          rights reserved
-        </span>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-[11px] text-[var(--color-text-muted)] font-mono text-center">
+            &copy; {new Date().getFullYear()} Nathan John Orlanes &middot; All
+            rights reserved
+          </span>
+          <span className="text-[10px] text-[var(--color-text-muted)]/50 font-mono">
+            Designed &amp; Built by Nathan John
+          </span>
+        </div>
 
         <span className="text-[11px] text-[var(--color-text-muted)] font-mono">
           Next.js &middot; Tailwind &middot; GSAP

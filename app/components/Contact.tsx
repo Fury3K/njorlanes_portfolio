@@ -86,9 +86,9 @@ const Contact: React.FC = () => {
         <div className="accent-line w-32 mt-4" />
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-16">
+      <div className="flex flex-col lg:flex-row gap-16">
         {/* Left: Contact info + socials */}
-        <div className="gs-reveal opacity-0 flex flex-col justify-center">
+        <div className="gs-reveal opacity-0 flex flex-col justify-center lg:flex-1">
           <h3 className="font-display font-extrabold text-5xl sm:text-6xl tracking-[-0.04em] leading-[0.88] mb-8">
             <span className="text-[var(--color-text-primary)] block">
               Get In
@@ -122,7 +122,7 @@ const Contact: React.FC = () => {
               },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-muted)] group-hover:text-white group-hover:border-white/20 transition-all duration-300 shrink-0">
+                <div className="w-11 h-11 rounded-full bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-muted)] group-hover:text-white group-hover:border-white/20 group-hover:scale-110 transition-all duration-300 shrink-0">
                   <i className={`fa-solid ${item.icon} text-sm`} />
                 </div>
                 <div>
@@ -175,15 +175,29 @@ const Contact: React.FC = () => {
               </a>
             ))}
           </div>
+
+          {/* Open to work info box */}
+          <div className="mt-8 flex items-center gap-3 px-4 py-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] max-w-sm">
+            <i className="fa-solid fa-lightbulb text-[var(--color-text-muted)] text-sm" />
+            <span className="text-xs text-[var(--color-text-muted)] font-mono">
+              Open to Full-Stack &amp; Mobile Opportunities
+            </span>
+          </div>
         </div>
 
+        {/* Vertical divider */}
+        <div className="contact-divider" />
+
         {/* Right: Form */}
-        <div className="gs-reveal opacity-0 glass-card p-8 lg:p-10 relative overflow-hidden">
+        <div className="gs-reveal opacity-0 glass-card p-8 lg:p-10 relative overflow-hidden lg:flex-1">
           <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
 
           <h3 className="text-[var(--color-text-primary)] font-display font-bold text-xl mb-8 flex items-center gap-3 relative z-10">
             Send me a message
-            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="relative flex h-2 w-2">
+              <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+            </span>
           </h3>
 
           <form
@@ -258,7 +272,7 @@ const Contact: React.FC = () => {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full py-3.5 bg-white text-[var(--color-background)] font-bold text-sm uppercase tracking-widest rounded-lg hover:bg-gray-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shimmer-gold mt-2"
+              className="w-full py-3.5 bg-white text-[var(--color-background)] font-bold text-sm uppercase tracking-widest rounded-lg hover:bg-gray-200 hover:shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shimmer-gold mt-2"
             >
               {status === "loading" ? (
                 <span className="flex items-center justify-center gap-2">

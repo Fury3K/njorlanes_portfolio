@@ -97,17 +97,18 @@ h1, h2, h3, h4 {
    GLASSMORPHISM CARDS
    ============================ */
 .glass-card {
-  background: rgba(14, 14, 18, 0.8);
+  background: rgba(14, 14, 18, 0.6);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 0.75rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .glass-card:hover {
-  border-color: var(--color-border-hover);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.03);
+  transform: translateY(-4px);
 }
 
 /* ============================
@@ -144,7 +145,7 @@ h1, h2, h3, h4 {
 }
 
 /* ============================
-   TECH BADGES
+   TECH BADGES (About section)
    ============================ */
 .tech-badge {
   display: inline-flex;
@@ -179,6 +180,180 @@ h1, h2, h3, h4 {
 }
 
 /* ============================
+   TECH CARDS (Skills Grid)
+   ============================ */
+.tech-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 10px;
+  min-width: 76px;
+  min-height: 80px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+.tech-card i {
+  font-size: 22px;
+  color: var(--color-text-secondary);
+  transition: all 0.3s ease;
+}
+
+.tech-card .tech-card-name {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tech-card:hover i {
+  color: #fff;
+}
+
+.tech-card:hover .tech-card-name {
+  color: var(--color-text-secondary);
+}
+
+/* ============================
+   CATEGORY HEADER & DIVIDERS
+   ============================ */
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.category-bar {
+  width: 3px;
+  height: 22px;
+  background: #fff;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.category-label {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
+.subcategory-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 14px;
+}
+
+.subcategory-divider::before,
+.subcategory-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.subcategory-divider span {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* ============================
+   DOT PATTERN BACKGROUND
+   ============================ */
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ============================
+   TYPING CURSOR
+   ============================ */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #fff;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: typingBlink 0.6s step-end infinite;
+}
+
+@keyframes typingBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================
+   NAME HIGHLIGHT BOX
+   ============================ */
+.name-highlight {
+  position: relative;
+  display: inline-block;
+  padding: 0 16px;
+  margin: 0 4px;
+}
+
+.name-highlight::before {
+  content: '';
+  position: absolute;
+  inset: -2px 0;
+  background: #fff;
+  border-radius: 4px;
+  transform: skewX(-3deg);
+  z-index: 0;
+}
+
+.name-highlight span {
+  position: relative;
+  z-index: 1;
+  color: var(--color-background);
+}
+
+/* ============================
+   WAVE SECTION DIVIDER
+   ============================ */
+.wave-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.wave-divider svg {
+  width: 100%;
+  height: 60px;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .wave-divider svg {
+    height: 80px;
+  }
+}
+
+/* ============================
    PROJECT IMAGES
    ============================ */
 .project-scroll-image {
@@ -210,6 +385,28 @@ h1, h2, h3, h4 {
   color: var(--color-text-muted);
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+/* ============================
+   TOOL PILLS (Projects)
+   ============================ */
+.tool-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  letter-spacing: 0.03em;
+  transition: all 0.3s;
+}
+
+.tool-pill:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 /* ============================
@@ -267,7 +464,7 @@ h1, h2, h3, h4 {
   border-radius: 10px;
   color: var(--color-text-secondary);
   font-size: 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   background: transparent;
 }
@@ -276,7 +473,7 @@ h1, h2, h3, h4 {
   border-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   background: rgba(255, 255, 255, 0.06);
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.05);
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.06);
 }
 
@@ -377,6 +574,46 @@ h1, h2, h3, h4 {
 }
 
 /* ============================
+   CONTACT DIVIDER
+   ============================ */
+.contact-divider {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--color-border), transparent);
+  align-self: stretch;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .contact-divider {
+    display: block;
+  }
+}
+
+/* ============================
+   NAV LINK UNDERLINE
+   ============================ */
+.nav-link-underline {
+  position: relative;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateX(-50%);
+}
+
+.nav-link-underline:hover::after,
+.nav-link-underline.is-active::after {
+  width: 70%;
+}
+
+/* ============================
    UTILITY
    ============================ */
 .no-scroll {
@@ -403,6 +640,28 @@ h1, h2, h3, h4 {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ============================
@@ -435,6 +694,28 @@ h1, h2, h3, h4 {
   to { transform: translateX(100%); }
 }
 
+/* Date badge shimmer */
+.shimmer-badge {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: none;
+}
+.shimmer-badge:hover::after {
+  animation: shimmerSweep 0.5s ease-out forwards;
+}
+
 /* ============================
    SCANLINE (Boot Screen)
    ============================ */
@@ -449,4 +730,18 @@ h1, h2, h3, h4 {
     transparent 2px
   );
   opacity: 0.4;
+}
+
+/* ============================
+   PULSING INDICATOR
+   ============================ */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }

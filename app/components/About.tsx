@@ -69,7 +69,7 @@ const About: React.FC = () => {
                 <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1.5 flex items-center gap-2">
                   {edu.year}
                   {edu.active && (
-                    <span className="px-1.5 py-0.5 text-[9px] font-bold uppercase bg-white/5 text-[var(--color-text-secondary)] rounded border border-white/10">
+                    <span className="px-1.5 py-0.5 text-[9px] font-bold uppercase bg-white/5 text-[var(--color-text-secondary)] rounded border border-white/10 shimmer-badge">
                       Current
                     </span>
                   )}
@@ -85,18 +85,18 @@ const About: React.FC = () => {
             <i className="fa-solid fa-award text-[var(--color-text-secondary)] text-base" />
             Certifications
           </h3>
-          <div className="flex flex-col gap-3">
+          <div className="grid md:grid-cols-3 gap-3">
             {[
               { title: "Proweaver Hackathon PromptQuest", org: "Certificate of Participation (2025)", icon: "fa-solid fa-trophy", url: "https://drive.google.com/file/d/1cU-frAdqfDmDhpwRfEqBH7W_KNexFwsy/view?usp=sharing" },
               { title: "AWS Cloud Architecture", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://www.credly.com/badges/2163b9d2-be43-4313-83f1-c2e11972d829/public_url" },
               { title: "AWS Cloud Foundations", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://www.credly.com/badges/a57bd9de-4b29-4fa9-8bd1-c799e93da891" },
             ].map((cert, i) => (
               <a key={i} href={cert.url} target="_blank" rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-4 rounded-lg border border-[var(--color-border)] hover:border-white/10 bg-[var(--color-surface)] hover:bg-[var(--color-accent-muted)] transition-all duration-300">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-surface-elevated)] text-[var(--color-text-secondary)] group-hover:text-white group-hover:scale-110 transition-all duration-300 text-lg shrink-0">
+                className="group flex items-center gap-4 p-5 rounded-xl border border-[var(--color-border)] hover:border-white/10 bg-[var(--color-surface)] hover:bg-[var(--color-accent-muted)] transition-all duration-300 hover:translate-y-[-4px] hover:shadow-[0_8px_24px_rgba(255,255,255,0.03)]">
+                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[var(--color-surface-elevated)] border border-[var(--color-border)] text-[var(--color-text-secondary)] group-hover:text-white group-hover:scale-110 group-hover:border-white/15 transition-all duration-300 text-lg shrink-0 shadow-sm">
                   <i className={cert.icon} />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <h4 className="font-semibold text-sm text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)] transition-colors duration-300 truncate">{cert.title}</h4>
                   <p className="text-xs text-[var(--color-text-muted)] mt-0.5">{cert.org}</p>
                 </div>

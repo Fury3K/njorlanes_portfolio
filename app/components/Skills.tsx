@@ -141,7 +141,7 @@ const Skills: React.FC = () => {
         <div className="relative mb-20 gs-reveal opacity-0">
           <span className="section-number">02</span>
           <div className="relative z-10">
-            <div className="section-label mb-3">// Tech Stack</div>
+            <div className="section-label mb-3"></div>
             <h2 className="gs-scramble font-display font-bold text-3xl md:text-4xl tracking-tight">
               Skills &amp; Technologies
             </h2>

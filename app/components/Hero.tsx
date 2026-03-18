@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
             <span className="text-xs">&#8594;</span>
           </a>
           <a
-            href="/ORLANES_Resume.pdf"
+            href="/ORLANES_Resume2026.pdf"
             download="Nathan_John_Orlanes_Resume.pdf"
             className="inline-flex items-center gap-2 px-7 py-3 border border-[var(--color-border)] text-[var(--color-text-secondary)] text-sm font-semibold hover:border-white/20 hover:text-[var(--color-text-primary)] transition-all duration-300 uppercase tracking-widest rounded-lg"
           >

@@ -17,7 +17,7 @@ export const projects: Project[] = [
     image: "/AudioScholar.png",
     badges: ["React", "Spring Boot", "Firebase", "Gemini API", "Tailwind"],
     githubUrl: "https://github.com/MasuRii/AudioScholar",
-    liveUrl: "https://audioscholar.vercel.app/",
+    liveUrl: "https://fury3k.github.io/AudioScholar-static/",
   },
   {
     number: "02",
@@ -27,7 +27,7 @@ export const projects: Project[] = [
     image: "/BrisaSolei.png",
     badges: ["Next.js", "PostgreSQL", "Drizzle ORM", "Ant Design", "Tailwind"],
     githubUrl: "https://github.com/themarneilx/resort-booking",
-    liveUrl: "https://brisasolei.netlify.app/",
+    liveUrl: "https://staticbrisasolei.netlify.app/",
   },
   {
     number: "03",

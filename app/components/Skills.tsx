@@ -29,7 +29,10 @@ const categories: Category[] = [
           { name: "Next.js 16", icon: "fa-solid fa-n" },
           { name: "Three.js", icon: "fa-solid fa-cube" },
           { name: "GSAP", icon: "fa-solid fa-wand-magic-sparkles" },
+          { name: "Framer Motion", icon: "fa-solid fa-film" },
           { name: "Tailwind", icon: "fa-brands fa-css3-alt" },
+          { name: "DaisyUI", icon: "fa-solid fa-palette" },
+          { name: "Vite", icon: "fa-solid fa-bolt" },
         ],
       },
       {
@@ -52,6 +55,7 @@ const categories: Category[] = [
           { name: "Node.js", icon: "fa-brands fa-node" },
           { name: "Express", icon: "fa-solid fa-server" },
           { name: "Spring Boot", icon: "fa-solid fa-leaf" },
+          { name: "FastAPI", icon: "fa-solid fa-bolt" },
         ],
       },
       {
@@ -69,7 +73,9 @@ const categories: Category[] = [
     title: "Database & Storage",
     items: [
       { name: "PostgreSQL", icon: "fa-solid fa-database" },
+      { name: "MySQL", icon: "fa-solid fa-database" },
       { name: "MongoDB", icon: "fa-solid fa-leaf" },
+      { name: "SQLite", icon: "fa-solid fa-database" },
       { name: "Firebase", icon: "fa-solid fa-fire" },
       { name: "SQL", icon: "fa-solid fa-database" },
     ],
@@ -93,6 +99,7 @@ const categories: Category[] = [
         items: [
           { name: "AWS", icon: "fa-brands fa-aws" },
           { name: "Docker", icon: "fa-brands fa-docker" },
+          { name: "Gemini API", icon: "fa-solid fa-microchip" },
           { name: "Vercel", icon: "fa-solid fa-cloud-arrow-up" },
           { name: "Netlify", icon: "fa-solid fa-diamond" },
         ],
@@ -104,8 +111,10 @@ const categories: Category[] = [
           { name: "GitHub", icon: "fa-brands fa-github" },
           { name: "Postman", icon: "fa-solid fa-paper-plane" },
           { name: "Maven", icon: "fa-solid fa-scroll" },
+          { name: "Gradle", icon: "fa-solid fa-scroll" },
           { name: "ESLint", icon: "fa-solid fa-check-double" },
           { name: "VS Code", icon: "fa-solid fa-code" },
+          { name: "Playwright", icon: "fa-solid fa-robot" },
           { name: "Leaflet", icon: "fa-solid fa-map-location-dot" },
         ],
       },

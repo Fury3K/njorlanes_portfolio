@@ -10,7 +10,7 @@ const About: React.FC = () => {
       <div className="relative mb-20 gs-reveal opacity-0">
         <span className="section-number">01</span>
         <div className="relative z-10">
-          <div className="section-label mb-3">// About Me</div>
+          <div className="section-label mb-3"></div>
           <h2 className="gs-scramble font-display font-bold text-3xl md:text-4xl tracking-tight">
             About Me
           </h2>
@@ -87,6 +87,17 @@ const About: React.FC = () => {
           </h3>
           <div className="grid md:grid-cols-3 gap-3">
             {[
+              { title: "Accenture Technology Academy", org: "Certificate of Completion (2026)", icon: "fa-solid fa-trophy", url: "https://drive.google.com/file/d/1RVGTylVo3ESJTQt0qtFd5avjqu_AVd-W/view?usp=sharing" },
+              { title: "Foundations of Prompt Engineering", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://drive.google.com/file/d/1OzDXR47cX6yLwAtWAXoxpvOIW-vse4zq/view?usp=sharing" },
+              { title: "Introduction to Generative AI - Art of the Possible", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://drive.google.com/file/d/1sJ67RMliJZTzeqVogAClZTHl-7b9rVNd/view?usp=sharing" },
+              { title: "Planning a Generative AI Project", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://drive.google.com/file/d/14hwR65ZoSQvTw_a8lPJj_lTtaTl9jhdG/view?usp=sharing" },
+              { title: "Building a Generative AI-Ready Organization", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://drive.google.com/file/d/1Nnv3Un6JeeuebiLN_IquzncEVXhru9pb/view?usp=sharing" },
+              { title: "Amazon Q Introduction", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://drive.google.com/file/d/1AiqpePpMZK8ZBKh3zS8xD1sqay8rkprV/view?usp=sharing" },
+              { title: "Generative AI Learning Plan for Decision Makers", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://drive.google.com/file/d/14yZvzt_wPZ8cqEwHlOmnrLJtuhDFV1UF/view?usp=sharing" },
+              
+              
+
+
               { title: "Proweaver Hackathon PromptQuest", org: "Certificate of Participation (2025)", icon: "fa-solid fa-trophy", url: "https://drive.google.com/file/d/1cU-frAdqfDmDhpwRfEqBH7W_KNexFwsy/view?usp=sharing" },
               { title: "AWS Cloud Architecture", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://www.credly.com/badges/2163b9d2-be43-4313-83f1-c2e11972d829/public_url" },
               { title: "AWS Cloud Foundations", org: "Amazon Web Services (2025)", icon: "fa-brands fa-aws", url: "https://www.credly.com/badges/a57bd9de-4b29-4fa9-8bd1-c799e93da891" },

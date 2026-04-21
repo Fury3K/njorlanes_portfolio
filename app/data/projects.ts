@@ -31,12 +31,11 @@ export const projects: Project[] = [
   },
   {
     number: "03",
-    title: "Cain & Abel",
+    title: "InnoCare APE Records System",
     description:
-      "A 2D cooperative puzzle platformer built for the ProWeaver Hackathon PromptQuest 2025. Players control two brothers with unique abilities — Cain's earth manipulation and Abel's agility — to solve puzzles across story-driven levels. Built entirely with vanilla JavaScript and the HTML5 Canvas API.",
-    image: "/CainAndAbel.png",
-    badges: ["Vanilla JS", "HTML5 Canvas", "CSS3", "Hackathon"],
-    githubUrl: "https://github.com/Fury3K/Cain-and-Abel",
+      "A web-based system for managing Annual Physical Examination (APE) records. Nurses upload medical PDF documents, the system extracts relevant patient data using AI, and presents structured records for review and management.",
+    image: "/InnoCare-APE.png",
+    badges: ["Next.js", "PostgreSQL", "Tailwind"],
   },
   {
     number: "04",
@@ -74,5 +73,14 @@ export const projects: Project[] = [
     image: "/Pasahe.png",
     badges: ["Flutter", "Dart", "OpenStreetMap", "OSRM", "Hive"],
     githubUrl: "https://github.com/RecursiveDev/Pasahe",
+  },
+  {
+    number: "08",
+    title: "Cain & Abel",
+    description:
+      "A 2D cooperative puzzle platformer built for the ProWeaver Hackathon PromptQuest 2025. Players control two brothers with unique abilities — Cain's earth manipulation and Abel's agility — to solve puzzles across story-driven levels. Built entirely with vanilla JavaScript and the HTML5 Canvas API.",
+    image: "/CainAndAbel.png",
+    badges: ["Vanilla JS", "HTML5 Canvas", "CSS3", "Hackathon"],
+    githubUrl: "https://github.com/Fury3K/Cain-and-Abel",
   },
 ];
